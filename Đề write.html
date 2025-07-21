@@ -1,0 +1,1299 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luyện Thi Viết Tiếng Anh Chuyên Nghiệp</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Be Vietnam Pro', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        /* Mobile First Responsive Design */
+        @media (max-width: 640px) {
+            body {
+                font-size: 14px;
+                line-height: 1.5;
+            }
+            
+            .container {
+                margin: 0.5rem;
+                padding: 1rem !important;
+                border-radius: 12px;
+            }
+            
+            header h1 {
+                font-size: 2rem !important;
+                line-height: 1.2;
+            }
+            
+            header p {
+                font-size: 1rem !important;
+            }
+            
+            .mobile-stack {
+                flex-direction: column !important;
+                gap: 0.5rem !important;
+            }
+            
+            .mobile-text-sm {
+                font-size: 0.875rem !important;
+            }
+            
+            .mobile-p-2 {
+                padding: 0.5rem !important;
+            }
+            
+            .mobile-mb-4 {
+                margin-bottom: 1rem !important;
+            }
+            
+            .question-card-mobile {
+                padding: 1rem !important;
+                margin-bottom: 1rem !important;
+            }
+            
+            .tab-mobile {
+                font-size: 0.875rem !important;
+                padding: 0.75rem 0.5rem !important;
+            }
+            
+            .button-mobile {
+                padding: 0.75rem 1rem !important;
+                font-size: 0.875rem !important;
+                min-height: 44px;
+                touch-action: manipulation;
+                -webkit-tap-highlight-color: transparent;
+            }
+            
+            /* Mobile utilities */
+            .mobile-p-2 { padding: 0.5rem; }
+            .mobile-hide-decoration { text-decoration: none; box-shadow: none; }
+            .mobile-center { text-align: center; }
+            .mobile-full-width { width: 100%; }
+            
+            /* Custom scrollbar for better mobile experience */
+            ::-webkit-scrollbar {
+                width: 6px;
+                height: 6px;
+            }
+            ::-webkit-scrollbar-track {
+                background: rgba(0,0,0,0.1);
+            }
+            ::-webkit-scrollbar-thumb {
+                background: rgba(0,0,0,0.3);
+                border-radius: 3px;
+            }
+            ::-webkit-scrollbar-thumb:hover {
+                background: rgba(0,0,0,0.5);
+            }
+        }
+        
+        @media (min-width: 641px) and (max-width: 1024px) {
+            .container {
+                margin: 1rem;
+                padding: 1.5rem !important;
+            }
+            
+            header h1 {
+                font-size: 3rem !important;
+            }
+        }
+        
+        .suggestion {
+            display: block;
+            max-height: 1500px;
+            overflow: visible;
+            transition: max-height 0.5s ease-in-out, padding 0.5s ease-in-out, margin 0.5s ease-in-out;
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+            margin-top: 1rem;
+        }
+        .suggestion.hidden {
+            display: none;
+            max-height: 0;
+            overflow: hidden;
+            padding: 0;
+            margin: 0;
+        }
+        .suggestion.show {
+            display: block;
+            max-height: 1500px; /* Increased max-height */
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+            margin-top: 1rem;
+        }
+        .tab-button.active {
+            border-color: #4f46e5;
+            background-color: #eef2ff;
+            color: #4338ca;
+            font-weight: 600;
+        }
+        .loader {
+            border: 4px solid #e0e7ff;
+            border-top: 4px solid #4f46e5;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 2rem auto;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fadeIn {
+            animation: fadeIn 0.5s ease-out;
+        }
+        .sample-email {
+            white-space: pre-wrap;
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #f8fafc;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            border: 1px solid #e2e8f0;
+            color: #334155;
+            line-height: 1.6;
+        }
+        
+        @media (max-width: 640px) {
+            .sample-email {
+                padding: 0.75rem;
+                font-size: 0.875rem;
+                line-height: 1.5;
+            }
+        }
+        
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Touch-friendly buttons for mobile */
+        @media (max-width: 768px) {
+            button {
+                min-height: 44px;
+                touch-action: manipulation;
+            }
+            
+            select {
+                min-height: 44px;
+            }
+        }
+        
+        /* Scrollbar styling for better mobile experience */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 3px;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #c1c1c1;
+            border-radius: 3px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #a8a8a8;
+        }
+    </style>
+</head>
+<body class="text-slate-800">
+
+    <div class="container mx-auto p-4 md:p-6 lg:p-8 max-w-7xl">
+        <header class="text-center mb-6 md:mb-8 py-4 md:py-6">
+            <div class="flex flex-col sm:flex-row justify-center items-center mb-4 mobile-stack">
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-indigo-600 mr-0 sm:mr-3 mb-2 sm:mb-0 md:w-12 md:h-12"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14,2 14,8 20,8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10,9 9,9 8,9"></polyline></svg>
+                <h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent leading-tight">
+                    Luyện Thi Viết APTIS
+                </h1>
+            </div>
+            <p class="text-lg sm:text-xl text-slate-700 font-medium mobile-text-sm">🎯 Thực hành đầy đủ các dạng bài từ Part 1 đến Part 4</p>
+            <p class="text-base sm:text-lg text-slate-600 mt-2 mobile-text-sm">✨ Giao diện chuyên nghiệp - Gợi ý chi tiết - Bài mẫu chuẩn</p>
+        </header>
+
+        <div class="bg-white p-4 sm:p-6 rounded-xl shadow-lg mb-6 md:mb-8 border border-gray-200">
+            <label for="topic-select" class="text-lg sm:text-xl font-bold mb-4 text-slate-700 flex flex-col sm:flex-row items-start sm:items-center mobile-stack">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-0 sm:mr-3 mb-2 sm:mb-0 text-indigo-600 md:w-7 md:h-7"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg>
+                <span class="mobile-text-sm">🔸 Bước 1: Chọn Chủ Đề Luyện Tập</span>
+            </label>
+            <select id="topic-select" class="w-full p-3 sm:p-4 border-2 border-slate-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition mt-2 text-base sm:text-lg font-medium bg-gray-50 mobile-text-sm">
+                <option value="">-- 🎯 Vui lòng chọn một chủ đề để bắt đầu --</option>
+            </select>
+             <button id="combined-practice-btn" class="mt-4 sm:mt-6 w-full flex items-center justify-center gap-2 sm:gap-3 bg-gradient-to-r from-emerald-500 to-green-600 text-white font-bold py-3 sm:py-4 px-4 sm:px-6 rounded-lg hover:from-emerald-600 hover:to-green-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 button-mobile">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="md:w-6 md:h-6"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect></svg>
+                <span class="text-sm sm:text-lg">🔥 Luyện Tập Tổng Hợp (Part 1-3)</span>
+            </button>
+        </div>
+
+        <div id="practice-container" class="hidden">
+            <div class="border-b border-slate-200 mb-4 sm:mb-6">
+                <nav class="-mb-px flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-6" aria-label="Tabs">
+                    <button id="tab-part123" class="tab-button whitespace-nowrap py-3 sm:py-4 px-2 sm:px-1 border-b-2 font-medium text-base sm:text-lg border-transparent text-slate-500 hover:text-slate-700 hover:border-slate-300 tab-mobile rounded-t-lg sm:rounded-none">
+                        📝 Luyện Tập Part 1-3
+                    </button>
+                    <button id="tab-part4" class="tab-button whitespace-nowrap py-3 sm:py-4 px-2 sm:px-1 border-b-2 font-medium text-base sm:text-lg border-transparent text-slate-500 hover:text-slate-700 hover:border-slate-300 tab-mobile rounded-t-lg sm:rounded-none">
+                        📧 Luyện Viết Email (Part 4)
+                    </button>
+                </nav>
+            </div>
+            
+            <main id="practice-area">
+                 <!-- Nội dung luyện tập sẽ được hiển thị ở đây -->
+            </main>
+        </div>
+        
+        <div id="welcome-message" class="text-center p-8 sm:p-12 bg-white rounded-xl shadow-lg">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="mx-auto text-indigo-500 mb-4 sm:w-15 sm:h-15"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+            <h2 class="text-xl sm:text-2xl font-bold text-slate-700">Sẵn sàng chinh phục bài thi Viết!</h2>
+            <p class="mt-2 text-slate-500 text-sm sm:text-base">Hãy chọn một chủ đề để bắt đầu luyện tập chi tiết từng phần.</p>
+        </div>
+
+        <footer class="text-center mt-8 sm:mt-12 text-slate-500 text-xs sm:text-sm mobile-p-2">
+            <p>&copy; 2024 - Được thiết kế để hỗ trợ bạn trên con đường học tập.</p>
+        </footer>
+    </div>
+
+    <script>
+        // --- DATA SECTION ---
+        const practiceData = {
+            "Business": {
+                "Part 1": [
+                    { question: "What is your hobby?", suggestion: "<b>Câu mẫu:</b> I love playing sports." },
+                    { question: "What is your favorite food?", suggestion: "<b>Câu mẫu:</b> I like seafood." },
+                    { question: "What is your favorite time of a day?", suggestion: "<b>Câu mẫu:</b> I love mornings." },
+                    { question: "How do you get to work?", suggestion: "<b>Câu mẫu:</b> I drive to work." },
+                    { question: "Where are you from?", suggestion: "<b>Câu mẫu:</b> I am from Vietnam." }
+                ],
+                "Part 2": [
+                    { question: "Where do you usually go shopping?", suggestion: "<b>Cấu trúc:</b> I often go shopping in a supermarket where...<br><b>Từ vựng:</b> good products, low prices, discounts.<br><b>Câu mẫu:</b> I often go shopping in a supermarket where I can buy a lot of good products with low prices and discounts." }
+                ],
+                "Part 3": [
+                    { question: "Tell me about a successful small business in your area.", suggestion: "<b>Cấu trúc:</b> In my hometown, there’s a café which is small but successful. They sell...<br><b>Từ vựng:</b> great drinks, homemade cakes, delicious, fresh, relax, busy.<br><b>Câu mẫu:</b> In my hometown, there’s a café which is small but successful. They sell great drinks and homemade cakes which are really delicious and fresh. Many people go there to relax or work, and it’s always busy." },
+                    { question: "I have a friend who wants to open a second coffee shop. What advice do you have?", suggestion: "<b>Cấu trúc:</b> It is important for her to... It’s a good idea for her to...<br><b>Từ vựng:</b> choose the location, busy place, ask for feedback.<br><b>Câu mẫu:</b> It is important for her to choose the location for the coffee shop. It must be located in a busy place. It’s a good idea for her to ask for feedback from current customers to know what she should do." },
+                    { question: "What qualities and skills are needed to create a successful small business?", suggestion: "<b>Cấu trúc:</b> To run a successful small business, people need to be... They must have...<br><b>Từ vựng:</b> hard-working, reliable, good products, strong communication, leadership skills.<br><b>Câu mẫu:</b> To run a successful small business, people need to be hard-working and reliable. They must offer good products or services. Also, they must have strong communication and leadership skills." }
+                ],
+                "Part 4": {
+                    scenario: "Currently our club is planning to support local individuals who want to start up a small business. The club has 2 proposals: First, create a call center where customers can call to ask questions and request help. Second, create free courses to support local universities nearby. Let us know which option you would use and why.",
+                    friend_email: {
+                        prompt: "Write a letter to a friend about your choice and the idea. (50 words)",
+                        suggestion: "<b>Mở đầu:</b> Chào hỏi thân mật (Hi Jane,).<br><b>Nội dung chính:</b> Thông báo về kế hoạch của CLB. Nêu lựa chọn của bạn (call center) và lý do ngắn gọn (nhanh và trực tiếp). Hỏi ý kiến bạn mình.<br><b>Kết thúc:</b> Hẹn gặp lại (Let’s talk about it..., See you later).",
+                        sample: "Hi Jane,\n\nDid you know that our club is going to support people who want to start up a small business? Of the two options in the email, I think we should choose to create a call center because it can help people more quickly and directly. What do you think? Let’s talk about it after lunch.\n\nSee you later."
+                    },
+                    manager_email: {
+                        prompt: "Write a letter to the club manager about your choice and why. (120 - 150 words)",
+                        suggestion: "<b>Mở đầu:</b> Chào hỏi trang trọng (Dear Manager,). Giới thiệu bản thân (My name is...). Nêu mục đích viết thư (I am writing this email regarding...).<br><b>Thân bài:</b> Bày tỏ sự ủng hộ. Nêu rõ lựa chọn của bạn (a call center). Đưa ra lý do chi tiết (support more quickly and directly, not all people go to universities).<br><b>Kết bài:</b> Bày tỏ hy vọng (Hopefully, these ideas will be helpful...). Ký tên trang trọng (Best regards,).",
+                        sample: "Dear Manager,\n\nMy name is Mary. I have been an active member of the club for the last six years. I am writing this email regarding the upcoming plan mentioned in the recent announcement from the club.\n\nI have been informed that our club is going to support local people who would like to start up a small business and we have two options including creating a call center and offering free courses for local universities. Between the two options, I believe that a call center is the best choice for some reasons. First, it can support local individuals more quickly and directly because there are a lot of things they have to do and they need quick answers. Second, not all local people go to universities to learn this course as it takes time. Therefore, a call center is the most suitable option.\n\nHopefully, these ideas will be helpful to the club.\n\nBest regards,"
+                    }
+                }
+            },
+            "Nature": {
+                "Part 1": [
+                    { question: "What language do you speak?", suggestion: "<b>Câu mẫu:</b> I speak Vietnamese." },
+                    { question: "What’s your favourite animal?", suggestion: "<b>Câu mẫu:</b> I love cats." },
+                    { question: "What do you like doing in the evening?", suggestion: "<b>Câu mẫu:</b> I enjoy watching TV." },
+                    { question: "How often do you go shopping?", suggestion: "<b>Câu mẫu:</b> Twice a week." },
+                    { question: "When was the last time you went out?", suggestion: "<b>Câu mẫu:</b> It was last Sunday." }
+                ],
+                "Part 2": [
+                    { question: "Please tell me about your free time and hobbies.", suggestion: "<b>Cấu trúc:</b> I enjoy [verb-ing]. I often... It helps me...<br><b>Từ vựng:</b> playing sports, play soccer, with my friends, at the weekend, fun, helpful, relax, improve my health.<br><b>Câu mẫu:</b> I enjoy playing sports. I often play soccer with my friends at the weekend. It’s fun and helpful. It helps me relax and improve my health. Besides, it allows me to keep fit." }
+                ],
+                "Part 3": [
+                    { question: "Where do you like to visit?", suggestion: "<b>Cấu trúc:</b> I like to visit [place]. It's famous for...<br><b>Từ vựng:</b> Halong Bay, popular travel destination, beautiful, islands, mountains, caves.<br><b>Câu mẫu:</b> I like to visit Halong Bay. It’s the most popular travel destination in Vietnam. It’s beautiful with islands, mountains and caves. Here we can do a lot of interesting things like swimming in the sea, climb the mountains and visit some caves." },
+                    { question: "Why did you decide to join the club?", suggestion: "<b>Cấu trúc:</b> I decided to join because I love... and I would like to...<br><b>Từ vựng:</b> love nature, meet people, same hobby, share experiences.<br><b>Câu mẫu:</b> I decided to take part in the club because I love the beauty of nature and I would like to meet people who have the same hobby. I think we can share a lot of experiences with them." },
+                    { question: "The bigger the club, the more environmentally conscious people are, right?", suggestion: "<b>Cấu trúc:</b> It is true that... Nowadays, more and more people are becoming interested in...<br><b>Từ vựng:</b> environmentally conscious, interested in the environment, directly affects our life.<br><b>Câu mẫu:</b> It is true that the bigger the club, the more environmentally conscious people are. Nowadays, more and more people are becoming interested in the environment because it directly affects our life." }
+                ],
+                "Part 4": {
+                    scenario: "The club is planning to encourage young people to spend more time outdoors instead of staying at home and playing games.",
+                    friend_email: {
+                        prompt: "Write a letter to your friend about your feelings and suggestions (50 words).",
+                        suggestion: "<b>Mở đầu:</b> Chào hỏi (Hi Jane,).<br><b>Nội dung:</b> Bày tỏ sự vui mừng về kế hoạch (I'm happy to hear that). Đưa ra gợi ý (Do you think we should design some interesting activities such as...?).<br><b>Kết thúc:</b> Hẹn bàn bạc (Let's talk about it...).",
+                        sample: "Hi Jane,\n\nIt’s me, Mary. Did you know that our club is going to encourage young people to spend more time outdoors? I’m happy to hear that. This plan is really useful for them. Do you think we should design some interesting activities such as camping or playing sports? Let’s talk about it after lunch.\n\nCatch you later."
+                    },
+                    manager_email: {
+                        prompt: "Write a letter to the manager about your feelings and suggestions (120 – 150 words).",
+                        suggestion: "<b>Mở đầu:</b> Giới thiệu bản thân và mục đích viết thư.<br><b>Thân bài:</b> Bày tỏ sự phấn khích (I am so excited to hear that...). Đưa ra các gợi ý cụ thể (It is advisable for us to design some interesting outdoor activities like...; I suggest organizing some sports events...). Giải thích lợi ích của các hoạt động đó (improve communication skills, social interaction).<br><b>Kết bài:</b> Bày tỏ hy vọng và ký tên.",
+                        sample: "Dear Manager,\n\nMy name is Mary. I have been an active member of the club for the last two months. I am writing this email in response to the latest announcement from the club.\n\nI have been informed that our club is planning to encourage young people to spend more time outdoors. Honestly, I am so excited to hear that because this plan is really useful for them.\n\nBeing a member of the club, I would like to offer some ideas. It is advisable for us to design some interesting outdoor activities which are good for them and the community such as cleaning the street or planting trees. Besides, I suggest organizing some sports events or contests with prizes. These activities can help them improve their communication skills or social interaction.\n\nI hope that my ideas will be useful for our club.\n\nBest regards,"
+                    }
+                }
+            },
+            "Outdoor": {
+                "Part 1": [
+                    { question: "Who do you like spending time with?", suggestion: "<b>Câu mẫu:</b> My friends." },
+                    { question: "What did you do yesterday?", suggestion: "<b>Câu mẫu:</b> I stayed at home." },
+                    { question: "What’s your favourite TV program?", suggestion: "<b>Câu mẫu:</b> I love watching movies." },
+                    { question: "Where do you live?", suggestion: "<b>Câu mẫu:</b> In Vietnam." },
+                    { question: "Do you like taking photos?", suggestion: "<b>Câu mẫu:</b> Yes, I do." }
+                ],
+                "Part 2": [
+                    { question: "Which outdoor activities do you like?", suggestion: "<b>Cấu trúc:</b> I like doing... I often... It's really useful because...<br><b>Từ vựng:</b> morning exercise, in the park, get up early, go jogging, fresh air, improve my health.<br><b>Câu mẫu:</b> I like doing morning exercise in the park. I often get up early and go jogging there. It’s really useful because I can enjoy fresh air and improve my health." }
+                ],
+                "Part 3": [
+                    { question: "Tell me about outdoor activities in bad weather.", suggestion: "<b>Gợi ý:</b> Bạn có thể nói về các hoạt động trong nhà thay thế, hoặc các hoạt động ngoài trời vẫn có thể làm được nếu có trang bị phù hợp (ví dụ: chạy bộ dưới mưa với áo mưa chuyên dụng)." },
+                    { question: "Please give me your ideas and advice for hiking.", suggestion: "<b>Cấu trúc:</b> Hiking is... It allows people to...<br><b>Từ vựng:</b> fun, helpful, relax, reduce stress, kind of exercise, good for health.<br><b>Câu mẫu:</b> Hiking is fun and helpful. It allows people to relax and reduce stress after hard-working days. Also, it is a kind of exercise which is good for people’s health." },
+                    { question: "What are the most popular outdoor activities in your country?", suggestion: "<b>Cấu trúc:</b> In my country, the most popular ones are... They can spend hours...<br><b>Từ vựng:</b> doing exercise, doing the gardening, in the gardens, in the parks.<br><b>Câu mẫu:</b> In my country, there are many outdoor activities and the most popular ones are doing exercise and doing the gardening. They can spend hours in the gardens or in the parks." }
+                ],
+                "Part 4": {
+                    scenario: "The club is going to organise a trip in the summer. Do you want to go mountains or the coast? Please give me suggestions for both young and old people.",
+                    friend_email: {
+                        prompt: "Write an email to your friend to show your feelings and what you would like to do (50 words).",
+                        suggestion: "<b>Nội dung:</b> Bày tỏ sự vui mừng (I'm so happy...). Nêu lựa chọn của bạn (I think we should go to the mountains). Đưa ra lý do ngắn gọn (This can attract both young and old people).",
+                        sample: "Hi Jane,\n\nIt’s me, Mary. Did you know that our club is planning to organize a trip in the summer? I’m so happy to hear that. I think we should go to the mountains. This can attract both young and old people. What do you think? Let’s talk about it after lunch.\n\nCatch you later."
+                    },
+                    manager_email: {
+                        prompt: "Write an email to the manager of the club to show your feelings and recommendation about this situation (120-150 words).",
+                        suggestion: "<b>Thân bài:</b> Bày tỏ sự hào hứng (this news thrilled me). Đề xuất một địa điểm cụ thể (go to Halong Bay). Đưa ra lý do tại sao nó phù hợp cho cả người trẻ và người già (For young people, they can... For old people, they can...).",
+                        sample: "Dear Manager,\n\nMy name is Mary. I have been a dedicated member of the club for the last two months. I am writing this email regarding the upcoming trip.\n\nI have been informed that our club is planning to organize a trip in the summer. Frankly, this news thrilled me because I have been waiting for this trip for months.\n\nTo attract both young and old people to join the trip, it is advisable for us to go to Halong Bay for some reasons. First, Halong Bay is really beautiful with mountains, islands and caves. It is the most popular travel destination in Vietnam. Second, there we can design many activities which are suitable for people of all ages. For young people, they can swim in the sea, climb the mountain or explore the nature. For old people, they can enjoy the beauty of the nature from boats or go sightseeing.\n\nHopefully, my ideas will be helpful to our club.\n\nBest regards."
+                    }
+                }
+            },
+            "Fashion": {
+                "Part 1": [
+                    { question: "What are you wearing today?", suggestion: "<b>Câu mẫu:</b> I am wearing a dress / a T-shirt and jeans." },
+                    { question: "How many people are there in your family?", suggestion: "<b>Câu mẫu:</b> 4 people / Four people." },
+                    { question: "What did you do yesterday?", suggestion: "<b>Câu mẫu:</b> I stayed at home." },
+                    { question: "How do you go to school?", suggestion: "<b>Câu mẫu:</b> By car. / I drive to school." },
+                    { question: "What’s your hobby?", suggestion: "<b>Câu mẫu:</b> I like reading books." }
+                ],
+                "Part 2": [
+                    { question: "When was the last time you went shopping for clothes?", suggestion: "<b>Cấu trúc:</b> The last time I went shopping for clothes was... I bought...<br><b>Câu mẫu:</b> Last week I bought a sweater and jacket from a shop near my house. They were fashionable and stylish." }
+                ],
+                "Part 3": [
+                    { question: "Some people prefer to buy online. How do you like it and why?", suggestion: "<b>Cấu trúc:</b> I prefer buying clothes online for some reasons. First,... Second,...<br><b>Câu mẫu:</b> I prefer buying clothes online for some reasons. First, it is more convenient as I don’t have to go to stores so I can save a lot of time. Second, I can buy things at low prices with discounts or vouchers." },
+                    { question: "Why did you decide to join the club?", suggestion: "<b>Cấu trúc:</b> I decided to join the club because...<br><b>Câu mẫu:</b> I decided to join the club because I love fashion and I want to meet people who share my hobby. I think I can learn a lot of things from them." },
+                    { question: "Why do people like fashion?", suggestion: "<b>Cấu trúc:</b> People are interested in fashion because...<br><b>Câu mẫu:</b> People like fashion because it can make them more beautiful and confident. Besides, it can show their personalities and creativity." }
+                ],
+                "Part 4": {
+                    scenario: "The club is planning to hold meetings with famous designers. Some suggest it should be held online while others want a fashion show-style event.",
+                    friend_email: {
+                        prompt: "Write to a friend to express which way of organisation you prefer (50 words).",
+                        suggestion: "<b>Nội dung:</b> Bày tỏ sự hào hứng (I am so excited...). Nêu lựa chọn (I think we should hold meetings online...) và lý do ngắn gọn (it is convenient).",
+                        sample: "Hi Jane,\n\nIt’s me, Mary. Did you know that our club is going to have a meeting with well-known designers? I am so excited to hear that. It’s advisable for us to have the meeting online because it’s more convenient for designers and members. What’s your take on it? Let’s discuss it over lunch.\n\nCatch you later."
+                    },
+                    manager_email: {
+                        prompt: "Write to the manager to express which way you prefer and explain (120 – 150 words).",
+                        suggestion: "<b>Thân bài:</b> Nêu lựa chọn (It is advisable for us to have the meeting online). Đưa ra lý do chi tiết (more convenient for everyone, especially designers from other countries; more economical, save costs).",
+                        sample: "Dear Manager,\n\nMy name is Mary. I have been an active member of the club for the last 6 months. I am writing this email regarding the upcoming meeting mentioned in the recent announcement from the club.\n\nI have been informed that our club is going to have a meeting with well-known designers. Frankly, this news thrilled me because I have been eagerly waiting for the event for a long time.\n\nBeing a member of the club, I would like to offer several ideas. It is advisable for us to have the meeting online for some reasons. First, it is more convenient for everyone, especially the designers who come from other countries. Second, it is more economical for us because we do not have to spend money travelling. Therefore, we can save costs for other things.\n\nHopefully, my ideas will be somewhat helpful to our club.\n\nBest regards,"
+                    }
+                }
+            },
+            "Community": {
+                "Part 1": [
+                    { question: "What’s the weather like today?", suggestion: "<b>Câu mẫu:</b> It's sunny and warm." },
+                    { question: "What do you usually do in the evening?", suggestion: "<b>Câu mẫu:</b> I usually read books." },
+                    { question: "Where would you like to live?", suggestion: "<b>Câu mẫu:</b> I'd like to live by the sea." },
+                    { question: "Which season of the year do you like?", suggestion: "<b>Câu mẫu:</b> I like autumn." },
+                    { question: "Where do you like to go in the summer?", suggestion: "<b>Câu mẫu:</b> I like going to the beach." }
+                ],
+                "Part 2": [
+                    { question: "Why did you decide to join the club?", suggestion: "<b>Gợi ý:</b> Nói về mong muốn đóng góp cho cộng đồng, giúp đỡ người khác, và gặp gỡ những người cùng chí hướng." }
+                ],
+                "Part 3": [
+                    { question: "My friend wants to go to the hair salon, but her car isn’t working. Can you suggest some ways for her to get there?", suggestion: "<b>Gợi ý:</b> Đề xuất các phương tiện công cộng (bus, train), dịch vụ gọi xe (Grab, Gojek), hoặc đề nghị giúp đỡ (I can give her a ride)." },
+                    { question: "Volunteering provides great learning opportunities and helps others a lot. Do you agree with this?", suggestion: "<b>Cấu trúc:</b> I completely agree. Volunteering helps us to learn... and it's a great way to...<br><b>Từ vựng:</b> new skills, teamwork, communication, give back to the community." },
+                    { question: "Do you agree with the view that volunteering is the form of learning, especially for young people. Why?", suggestion: "<b>Cấu trúc:</b> Yes, I agree. For young people, volunteering is a practical way to learn...<br><b>Từ vựng:</b> practical skills, responsibility, empathy, understand social issues." }
+                ],
+                "Part 4": {
+                    scenario: "Our club needs support with several tasks this year. First, we need more members who can actively participate in our ongoing projects. Second, we are looking for creative ideas to develop new activities. Could you share some suggestions with us?",
+                    friend_email: {
+                        prompt: "Write an email to your friend. Write about your feelings and what you would like to do (50 words).",
+                        suggestion: "<b>Nội dung:</b> Bày tỏ sự hào hứng (I feel excited about this). Đưa ra một vài ý tưởng nhanh (we should have a look at the background of members...; some small prizes for great ideas).",
+                        sample: "Hi Jane,\n\nHow’s it going? Have you got the latest email from our community club asking for support? Got any new ideas? I feel excited about this. Do you think we should have a look at the background of members to see what they can help? Also, there should be some small prizes for those with great ideas to encourage them. What do you think? Let’s talk about it after lunch.\n\nCatch you later,"
+                    },
+                    manager_email: {
+                        prompt: "Write an email to the manager of the club. Write about your feelings and what you would like to do (120-150 words).",
+                        suggestion: "<b>Thân bài:</b> Đưa ra các gợi ý cụ thể. Gợi ý 1: Tổ chức hoạt động để thu hút thành viên mới (organize monthly outdoor activities). Gợi ý 2: Cách để tìm người hỗ trợ dự án (look at the background of the members to know who can help).",
+                        sample: "Dear Manager,\n\nMy name is Mary. I have been an active member of the club for the last two years. I am writing this email in response to the latest announcement from our club.\n\nI have been informed that our club need support from members with several tasks including ongoing projects and creative ideas to develop new activities. I am so excited about this.\n\nBeing a member of the club, I would like to offer some ideas. We could organize monthly outdoor activities to bring members together and attract new people. These activities not only improve our image but also improve the relationship between members. It is advisable for us to look at the background of the members to know who can help the ongoing projects.\n\nI hope my ideas will be helpful to our club.\n\nBest regards,"
+                    }
+                }
+            },
+            "Car": {
+                "Part 4": {
+                    scenario: "There will be a car program taking place across Europe. The program invites the car club to nominate two representatives – one as the main driver and the other as a passenger – both of whom must possess strong driving skills. Do you have any suggestions for these positions?",
+                    friend_email: {
+                        prompt: "Write an email to your friend about your feelings and what you would like to do (50 words).",
+                        suggestion: "<b>Nội dung:</b> Báo tin (Did you know that...). Bày tỏ sự hào hứng (I am so excited...). Tự đề cử bản thân và bạn mình (I believe that we can be the best choices...).",
+                        sample: "Hi Jane,\n\nDid you know that there will be a car program happening across Europe and the organizers are looking for two representatives from our club? I am so excited to hear this news. With our excellent driving skills, I believe that we can be the best choices for the two positions. What do you think? I’m writing to the manager to express my idea.\n\nBye."
+                    },
+                    manager_email: {
+                        prompt: "Write an email to the manager of the club (120-150 words).",
+                        suggestion: "<b>Thân bài:</b> Đưa ra tiêu chí lựa chọn (good drivers, work well together, experience, focus, confidence, navigation skills). Đề cử người cụ thể và nêu lý do (I would like to suggest Mr. John as the main driver. He has... For the passenger role, I highly recommend Mr. David because...).",
+                        sample: "Dear Manager,\n\nMy name is Jane. I have been an active member of the club for the last two years. I am writing this email regarding the upcoming program.\n\nI have been informed that there will be a car program happening across Europe and the organizers are looking for two representatives. To be honest, I am so excited to hear that news because this is a great opportunity for our club.\n\nBeing a member of the club, I would like to offer some ideas. I think we should choose members who are good drivers and can work well together. The main driver should have experience, focus, and confidence on the road. The passenger should be someone who can help with navigation and support the driver during the program.\n\nI would like to suggest Mr. John as the main driver. He has great driving skills and a lot of experience. For the passenger role, I highly recommend Mr. David because he is good at navigation and staying calm under pressure.\n\nHopefully, my ideas will be helpful to our club.\n\nBest regards,"
+                    }
+                }
+            },
+            "Technology": {
+                "Part 1": [
+                    { question: "Where are you from?", suggestion: "<b>Câu mẫu:</b> I'm from Vietnam." },
+                    { question: "What’s the weather like today?", suggestion: "<b>Câu mẫu:</b> It's hot and humid." },
+                    { question: "What do you do in your free time?", suggestion: "<b>Câu mẫu:</b> I listen to music." },
+                    { question: "What is your first language?", suggestion: "<b>Câu mẫu:</b> My first language is Vietnamese." },
+                    { question: "Who do you usually go to the movies with?", suggestion: "<b>Câu mẫu:</b> With my friends." }
+                ],
+                "Part 2": [
+                    { question: "What do you usually use your laptop for?", suggestion: "<b>Cấu trúc:</b> I usually use my laptop to... Sometimes, I use it to...<br><b>Từ vựng:</b> learn online, watch movies, send emails, search for information, chat with friends.<br><b>Câu mẫu:</b> I usually use my laptop to learn online, watch movies on Youtube or send emails to my teachers or friends. Sometimes, I use it to search for information and chat with my friends." }
+                ],
+                "Part 3": [
+                    { question: "Do you often watch movies on your laptop or go to the theater?", suggestion: "<b>Cấu trúc:</b> I prefer to watch movies on my laptop because... Also, it helps me...<br><b>Từ vựng:</b> watch at home, do not have to go out, relaxing, convenient, save a lot of money.<br><b>Câu mẫu:</b> I prefer to watch movies on my laptop because I can watch at home. I do not have to go out. It’s more relaxing and convenient. Also, it helps me save a lot of money in comparison with going to the theatre." },
+                    { question: "Please give your opinion on watching a movie at the cinema.", suggestion: "<b>Cấu trúc:</b> However, watching a movie at the cinema is much more interesting as...<br><b>Từ vựng:</b> best films, large screen, wonderful sound system.<br><b>Câu mẫu:</b> However, watching a movie at the cinema is much more interesting as we can see the best films in the world and on a large screen with a wonderful sound system." }
+                ],
+                "Part 4": {
+                    scenario: "Members often post on the club's website. But lately there have been a few negative comments on other members' posts. Please give your opinion to fix the situation.",
+                    friend_email: {
+                        prompt: "Write an email to your friend. Write about 50 words.",
+                        suggestion: "<b>Nội dung:</b> Báo tin (Have you got the latest email...). Bày tỏ sự không đồng tình (It’s unacceptable...). Hỏi ý kiến (What do you think we can do...?).",
+                        sample: "Hi Jane,\n\nIt’s Susan. Have you got the latest email from our club that some people post negatives on other member’s post? It’s unacceptable for those rude people. What do you think we can do to stop this? I am going to write an email to the manager to give my opinion about this.\n\nSee you later."
+                    },
+                    manager_email: {
+                        prompt: "Write an email to the manager (120-150 words).",
+                        suggestion: "<b>Thân bài:</b> Đưa ra các giải pháp (solutions). Giải pháp 1: Đặt ra quy định rõ ràng (give clear rules). Giải pháp 2: Khuyến khích sự tôn trọng (encourage people to be understanding and respect others’ opinion). Giải pháp 3: Tạo không gian cho phản hồi (give them a place so that they can give feedback).",
+                        sample: "Dear Manager,\n\nMy name is Susan. I have been the member of our club for six months. I have got the email from our club regarding the negative posts of some members. Personally, I cannot agree with this. I am writing this email to give you some of my opinions as well as suggestions to deal with this problem.\n\nThere are some solutions that we can consider to fix this situation. We should give clear rules about this on our website or newsletters. In addition, we can encourage people to be understanding and respect others’ opinion as people are different and so they have different thinking. Last, it is a good idea to give them a place so that they can give feedback or opinion about anything in our club.\n\nI hope my suggestions are useful for our club.\n\nBest regards,"
+                    }
+                }
+            },
+            "Science": {
+                "Part 2": [
+                    { question: "Do you like science?", suggestion: "<b>Cấu trúc:</b> Yes, I really love science. It’s amazing because...<br><b>Từ vựng:</b> helped our life, become better, many inventions have been made.<br><b>Câu mẫu:</b> Yes, I really love science. It’s amazing because it has helped our life become better and better. Thanks to science, many inventions have been made." }
+                ],
+                "Part 3": [
+                    { question: "Why did you decide to join the club? How often will you go to the club?", suggestion: "<b>Cấu trúc:</b> I decide to join the club because... I can go to the club...<br><b>Câu mẫu:</b> I decide to join the club because I love science and I want to meet people who have the same interest as me to share knowledge and experiences. I can go to the club twice a week." },
+                    { question: "Do you remember anything about science which you were taught at school?", suggestion: "<b>Cấu trúc:</b> I can still remember some lessons about... One lesson is that...<br><b>Từ vựng:</b> water can boil, 100 degrees, the earth moves around the sun.<br><b>Câu mẫu:</b> I can still remember some lessons about science. One lesson is that water can boil at 100 degrees or the earth moves around the sun and the sun rises in the east and sets in the west." },
+                    { question: "Who is your favorite scientist?", suggestion: "<b>Cấu trúc:</b> My favourite scientist is..., who was an American scientist. He is known for...<br><b>Từ vựng:</b> Edison, inventing the electric light bulb, greatest inventor in history.<br><b>Câu mẫu:</b> My favourite scientist is Edison, who was an American scientist. He is known for inventing the electric light bulb. He is regarded the greatest inventor in history. I have read a lot of stories about him." }
+                ],
+                "Part 4": {
+                    scenario: "Our club is going to organize a science exhibition next month. Please give some suggestions to encourage both children and adults to attend this exhibition. Besides, should we give free entry fee or not?",
+                    friend_email: {
+                        prompt: "Write an email to your friend about your feelings and ideas (50 words).",
+                        suggestion: "<b>Nội dung:</b> Bày tỏ sự hào hứng (I’m so excited...). Đưa ra ý tưởng (vary the topics, offering free tickets).",
+                        sample: "Hi Jane,\n\nHow’s it going? Have you got the email from the club about the science exhibition next month? I’m so excited to know about the news. Do you think we should vary the topics to attract old and young people? Offering free tickets is also a good way to attract more people. What do you think? Let’s discuss it over lunch.\n\nBye,"
+                    },
+                    manager_email: {
+                        prompt: "Write an email to the president of the club about your ideas (120-150 words).",
+                        suggestion: "<b>Thân bài:</b> Đề xuất cách thu hút người tham gia (promote the exhibition on social networking sites, give discounts for families). Đưa ra ý kiến về phí vào cửa (I do not think we should offer free tickets as we need money to organize the event).",
+                        sample: "Dear Manager,\n\nMy name is Susan, a member of our club for 6 months. I am writing this email regarding the upcoming science exhibition.\n\nTo encourage both children and adults to take part in the exhibition, there are several ways. First, we can promote the exhibition on social networking sites like Facebook and post it in the groups of the areas. Second, it is a good idea to give discounts for families. By this way, we can attract all the members of families to join the event. Regarding the entry fee, I do not think we should offer free tickets as we need money to organize the event.\n\nI hope my ideas will be useful to our club.\n\nBest regards,"
+                    }
+                }
+            },
+            "Home living": {
+                "Part 2": [
+                    { question: "Describe where you live (20-30 words).", suggestion: "<b>Cấu trúc:</b> I live in a... with... It is located in...<br><b>Câu mẫu:</b> I live in a small house with 5 rooms and a small garden. It is located in the city centre so it is convenient for travelling." }
+                ],
+                "Part 3": [
+                    { question: "You have to stay in the bedroom but have to share with your brother. How do you feel?", suggestion: "<b>Cấu trúc:</b> It does not matter if I have to share... I think it is better because...<br><b>Câu mẫu:</b> It does not matter if I have to share my bedroom with my brother. I think it is better because I can teach and take care of my brother better. Also, we can talk or share everything about life." },
+                    { question: "It is better to live in the city than in the countryside. Do you agree? Why?", suggestion: "<b>Cấu trúc:</b> I don’t agree with it because living in the countryside also brings some benefits. The air here is... Also, the people are...<br><b>Câu mẫu:</b> I don’t agree with it because living in the countryside also brings some benefits. The air here is fresh and really good for people’s health. Also, the people are friendly and kind. They are willing to help other people when they are in trouble." },
+                    { question: "Nowadays, old buildings are demolished and replaced with modern buildings. I feel we should protect historic buildings. What do you think?", suggestion: "<b>Cấu trúc:</b> I think old buildings are not safe... so they should be demolished... However, we should consider some historic buildings as...<br><b>Câu mẫu:</b> I think old buildings are not safe for people living there and surrounding people so they should be demolished and replaced with modern ones. However, we should consider some historic buildings as they have historic values." }
+                ],
+                "Part 4": {
+                    scenario: "Currently, there are many young families who want to buy a house or an apartment. The club wants the members to make suggestions to help them find homes.",
+                    friend_email: {
+                        prompt: "Write to a friend (50 words).",
+                        suggestion: "<b>Nội dung:</b> Hỏi thăm và báo tin (Did you get the email...). Đưa ra ý tưởng (Do you think we should have a meeting and invite them...?).",
+                        sample: "Hi Jane,\n\nHow’s it going? Did you get the email from our club that now a lot of young couples want to buy a house or an apartment? What’s your take on it? Do you think we should have a meeting and invite them to attend? I am writing an email to the manager to express my ideas.\n\nCatch you later."
+                    },
+                    manager_email: {
+                        prompt: "Write to the manager of the club (120-150 words).",
+                        suggestion: "<b>Thân bài:</b> Đưa ra các đề xuất tiềm năng (potential suggestions). Đề xuất 1: Tổ chức cuộc họp (hold a meeting and invite them). Đề xuất 2: Cung cấp thông tin (provide them with essential information). Đề xuất 3: Tư vấn miễn phí (offer free consultation).",
+                        sample: "Dear Sir/ Madam,\n\nMy name is Diana. I have been a member of your club for about 2 months. I am writing this email in response to your latest email.\n\nAccording to the email, many young family would like to find a house or an apartment. To be honest, I feel so excited as we will have a lot of work to do.\n\nThere are several potential suggestions we can consider. Firstly, it is a good idea to hold a meeting and invite them to attend. We can get to know more about their preference so that we can help them find the most suitable one. Additionally, it is advisable for us to provide them with essential information about the houses or apartments which are on sale now. One more way we can think of is that we can offer free consultation.\n\nHopefully, these suggestions are useful for you to take into account.\n\nBest regards,"
+                    }
+                }
+            },
+            "Travel": {
+                "Part 1": [
+                    { question: "What is your favourite animal?", suggestion: "<b>Câu mẫu:</b> I love cats and dogs." },
+                    { question: "What time do you get up every day?", suggestion: "<b>Câu mẫu:</b> I get up at 6AM." },
+                    { question: "What language do you speak?", suggestion: "<b>Câu mẫu:</b> I speak English." },
+                    { question: "How many people are there in your family?", suggestion: "<b>Câu mẫu:</b> There are 4 people." },
+                    { question: "Do you like to drink coffee?", suggestion: "<b>Câu mẫu:</b> I really like coffee." }
+                ],
+                "Part 2": [
+                    { question: "Why are you interested in travel?", suggestion: "<b>Cấu trúc:</b> I am interested in travel because it is... and it helps me...<br><b>Từ vựng:</b> interesting, useful, relax, reduce stress, broaden my mind, improve my knowledge.<br><b>Câu mẫu:</b> I am interested in travel because it is interesting and useful. It helps me relax and reduce stress. Besides, it allows me to broaden my mind. I can improve my knowledge." }
+                ],
+                "Part 3": [
+                    { question: "Tell me a time you had a trip in bad weather.", suggestion: "<b>Cấu trúc:</b> I am going to share with you about a time... It was [X] years ago when I visited...<br><b>Từ vựng:</b> visited Ha Long Bay, started to rain heavily, scared, tour guide reassured us.<br><b>Câu mẫu:</b> It was 2 years ago when I visited Ha long Bay with my family. It was a July day. When we were going to the island, it started to rain heavily. We were very scared, but the tour guide reassured us. Then, it stopped raining and we arrived safely." },
+                    { question: "Travelling a long distance by some means of transportation is not good for the environment. Do you agree?", suggestion: "<b>Cấu trúc:</b> I totally agree with this statement. Some kinds of transportation... can seriously pollute...<br><b>Từ vựng:</b> pollute the air and water, affect people’s health.<br><b>Câu mẫu:</b> I totally agree with this statement. Some kinds of transportation for long distance like airplanes, trains, ships or cars can seriously pollute the air and water, which can directly affect people’s health." },
+                    { question: "What are the most interesting places to visit in your country?", suggestion: "<b>Cấu trúc:</b> There are many popular travel destinations in my country including... Here they can...<br><b>Từ vựng:</b> tourist attractions, Halong Bay, Dat Lat, Hanoi, enjoy the beauty of nature, local food, explore new places.<br><b>Câu mẫu:</b> There are many popular travel destinations/ tourist attractions in my country including Halong Bay, Dat Lat and Hanoi. Here they can enjoy the beauty of the nature, local food, explore new places and meet hospitable people." }
+                ],
+                "Part 4": {
+                    scenario: "The club is preparing to welcome a group of foreign tourists visiting our country for the first time. Do you have any suggestions to welcome them and communicate with them because they do not speak Vietnamese?",
+                    friend_email: {
+                        prompt: "Write an email to your friend (50 words).",
+                        suggestion: "<b>Nội dung:</b> Báo tin và bày tỏ sự hào hứng (I am so excited...). Đưa ra ý tưởng (hire an interpreter, a welcome party).",
+                        sample: "Hi Jane,\n\nHave you read the email from our club that we are preparing to welcome a group of foreign tourists visiting our country? I am so excited about this news because I will have a chance to practice my English with them. I think we should hire an interpreter to help us communicate with them. A party to welcome them is also a good idea. What do you think?\n\nCatch you later."
+                    },
+                    manager_email: {
+                        prompt: "Write an email to the manager (120-150 words).",
+                        suggestion: "<b>Thân bài:</b> Đề xuất cách chào đón (pick them up at the airport, have a warm welcome party, help them book a hotel). Đề xuất cách giao tiếp (hire an interpreter to help us during their stay).",
+                        sample: "Dear Sir/Madam,\n\nMy name is Mary. I have been a member of our club for six months. I got the email from our club that we are preparing to welcome a group of foreign tourists visiting our country for the first time. I am so excited about this news. I am writing this email to give you my suggestions to welcome them and communicate with them.\n\nAbout the way we welcome them, I think we should pick them up at the airport and then have a warm welcome party. We can help them book the best hotel in our city and give them necessary information when they stay here. Regarding the communication with them, it is a good idea for us to hire an interpreter to help us during their stay in Vietnam.\n\nI hope that my suggestions are useful for club.\n\nBest regards."
+                    }
+                }
+            },
+            "Food": {
+                "Part 1": [
+                    { question: "What is your favourite sport?", suggestion: "<b>Câu mẫu:</b> I love playing badminton." },
+                    { question: "How many people are there in your family?", suggestion: "<b>Câu mẫu:</b> Four. / There are four people." },
+                    { question: "What did you do yesterday?", suggestion: "<b>Câu mẫu:</b> I stayed at home." },
+                    { question: "How do you go to school?", suggestion: "<b>Câu mẫu:</b> By car. / I go to school by bus." },
+                    { question: "What’s your hobby?", suggestion: "<b>Câu mẫu:</b> I love reading books." }
+                ],
+                "Part 2": [
+                    { question: "Why did you decide to join the club?", suggestion: "<b>Cấu trúc:</b> Because I like... and I can learn... Besides, I can meet...<br><b>Từ vựng:</b> cooking, learn how to cook, many kinds of food, meet people who love cooking.<br><b>Câu mẫu:</b> Because I like cooking and I can learn how to cook many kinds of food. Besides, I can meet people who love cooking, too." }
+                ],
+                "Part 3": [
+                    { question: "Who did you have dinner with yesterday? and where?", suggestion: "<b>Cấu trúc:</b> I had dinner with... at... We had...<br><b>Câu mẫu:</b> I had dinner with my family at home. We had seafood, vegetables and rice. My wife and my children really like the dishes I make so we often eat at home." },
+                    { question: "Do you prefer eating out or eating at home?", suggestion: "<b>Cấu trúc:</b> I prefer eating at home because... It helps me...<br><b>Từ vựng:</b> love cooking, enjoyable, cheap, save a lot of money, improve my health.<br><b>Câu mẫu:</b> I prefer eating at home because I love cooking. It is really enjoyable and cheap. It helps me save a lot of money and improve my health. Besides, it allows me to prevent health problems." },
+                    { question: "Should a tax be imposed on unhealthy food?", suggestion: "<b>Cấu trúc:</b> I think that a tax should be imposed on unhealthy food because... It can cause...<br><b>Từ vựng:</b> important, necessary, not good for our health, cause health problems, cancer, heart disease.<br><b>Câu mẫu:</b> I think that a tax should be imposed on unhealthy food because it is important. Unhealthy food is not good for our health. It can cause some health problems such as cancer, heart disease and so on. It can reduce harmful food and this is the best way to protect people’s health." }
+                ],
+                "Part 4": {
+                    scenario: "The club will invite a famous chef. What will the chef guide to cook? Please give us the suggestions for both young and old people.",
+                    friend_email: {
+                        prompt: "Write an email to your friend (50 words).",
+                        suggestion: "<b>Nội dung:</b> Báo tin vui (Did you know that...). Bày tỏ sự hào hứng (Great news! I’m so excited...). Đưa ra ý tưởng (he should guide to cook some popular and healthy kinds of food...).",
+                        sample: "Hi Jane,\n\nHow’s it going? Did you know that our club will invite a famous chef? Great news! I’m so excited about this. Do you think he should guide to cook some popular and healthy kinds of food in Vietnam? I’m going to write an email to the manager to express my idea.\n\nCatch you later."
+                    },
+                    manager_email: {
+                        prompt: "Write an email to the manager of the club (120-150 words).",
+                        suggestion: "<b>Thân bài:</b> Bày tỏ sự vui mừng (I am delighted to hear about this...). Đề xuất một đầu bếp cụ thể (invite Mr. Thomas because...). Đề xuất các món ăn nên dạy (instruct how to cook both modern and traditional dishes which are popular and healthy...).",
+                        sample: "Dear Mr. David,\n\nMy name is Susan. I have been a member of our club for six months. I have got the latest email from our club that we will invite a famous chef who will guide us to cook. I am writing this email in response to your latest email.\n\nAccording to the email, our club will invite a famous chef to teach us how to cook. I am delighted to hear about this and I believe that all the members will have the same feelings as me. It is better for us to invite Mr. Thomas because he is the best chef who has just won the first prize in the cooking competition. It is advisable for him to instruct how to cook both modern and traditional dishes which are popular and healthy to attract people of all ages.\n\nI hope that my ideas will be useful for our club.\n\nBest regards."
+                    }
+                }
+            },
+            "Music": {
+                "Part 1": [
+                    { question: "Where were you born?", suggestion: "<b>Câu mẫu:</b> I was born in Hanoi." },
+                    { question: "What is your hobby?", suggestion: "<b>Câu mẫu:</b> My hobby is playing sports." },
+                    { question: "When do you usually have breakfast?", suggestion: "<b>Câu mẫu:</b> At 8AM." },
+                    { question: "How old are you?", suggestion: "<b>Câu mẫu:</b> I’m 40 years old." },
+                    { question: "How often do you go shopping?", suggestion: "<b>Câu mẫu:</b> Twice a week." }
+                ],
+                "Part 2": [
+                    { question: "When and where do you usually listen to music?", suggestion: "<b>Cấu trúc:</b> I usually listen to music at... in... Sometimes I listen...<br><b>Câu mẫu:</b> I usually listen to music at home in the evening. Sometimes I listen to music in a coffee shop at the weekend." }
+                ],
+                "Part 3": [
+                    { question: "Tell me about a good memory of yours related to music or stories.", suggestion: "<b>Cấu trúc:</b> When I was small, I lived with... She often... to me...<br><b>Câu mẫu:</b> When I was small, I lived with my grandmother. She often read stories to me before I went to bed. I really loved the stories she read. They were very interesting and useful." },
+                    { question: "Playing loud music annoys people around you. What is your opinion?", suggestion: "<b>Cấu trúc:</b> I agree with the idea because this can badly affect...<br><b>Câu mẫu:</b> I agree with the idea because this can badly affect many people. Some people cannot suffer from loud music and some are focusing on their work. Some others may want to sleep." },
+                    { question: "Music taste differs with each generation. What is your opinion?", suggestion: "<b>Cấu trúc:</b> I strongly agree with this idea. In my country, old people often listen to... while young people love...<br><b>Câu mẫu:</b> I strongly agree with this idea. In my country, old people often listen to classical music or Bolero songs while young people love Rock, Pop music or remix music." }
+                ],
+                "Part 4": {
+                    scenario: "Our club is going to organise a music concert and we want to attract both the young and the old. Please give your opinions.",
+                    friend_email: {
+                        prompt: "Write an email to your friend who is also a member of the club (50 words).",
+                        suggestion: "<b>Nội dung:</b> Báo tin và bày tỏ sự hào hứng (I am so excited...). Đưa ra ý tưởng (offer free tickets to attract more people).",
+                        sample: "Hi Jane,\n\nIt’s Mary. How’s it going? Did you know that our club is going to organize a music concert? I am so excited to hear that. Do you think we should offer free tickets to attract more people to come? Let’s discuss it over lunch.\n\nSee you later."
+                    },
+                    manager_email: {
+                        prompt: "Write an email to the manager of the club (120-150 words).",
+                        suggestion: "<b>Thân bài:</b> Đưa ra các ý tưởng để thu hút cả người trẻ và người già. Ý tưởng 1: Vé (offer free tickets, give a big discount for families). Ý tưởng 2: Nội dung chương trình (vary the kinds of music played at the concert including classic music and modern one).",
+                        sample: "Dear Manager,\n\nMy name is Mary. I have been a member of our club for six months. I am writing this email regarding the upcoming event, the music concert.\n\nTo be honest, I am so excited to hear that we are going to organize a music concert because this is a first time we have had such a big event. Being a member of the club, I would like to give you some ideas to attract both young and old people to come to the concert.\n\nIt is a good idea to offer free tickets or we can give a big discount for families including grandparents, parents and children. Also, It is advisable for us to vary the kinds of music played at the concert including classic music and modern one so that everyone can enjoy.\n\nHopefully, my ideas are somewhat useful to our club.\n\nBest regards,"
+                    }
+                }
+            },
+            "Social": {
+                "Part 1": [
+                    { question: "Where are you from?", suggestion: "<b>Câu mẫu:</b> I am from Vietnam." },
+                    { question: "How is the weather today?", suggestion: "<b>Câu mẫu:</b> It is sunny." },
+                    { question: "How is the room you are in now?", suggestion: "<b>Câu mẫu:</b> It is very big." },
+                    { question: "What is your favourite subject?", suggestion: "<b>Câu mẫu:</b> My favourite subject is English." },
+                    { question: "What do you often do with your friends?", suggestion: "<b>Câu mẫu:</b> We often hang out." }
+                ],
+                "Part 2": [
+                    { question: "What do you like to do with friends and where do you do it?", suggestion: "<b>Cấu trúc:</b> I enjoy playing sports with my friends. We often play...<br><b>Câu mẫu:</b> I enjoy playing sports with my friends. We often play sports at a stadium near my house. It is relaxing and good for my health." }
+                ],
+                "Part 3": [
+                    { question: "Where did you meet your best friend for the first time and how did you become friends?", suggestion: "<b>Cấu trúc:</b> I met my best friend in... [X] years ago. We...<br><b>Câu mẫu:</b> I met my best friend in HCM city 10 years ago for the first time. We studied in the same class at ABC University. She learnt very well and often helped me do the homework. We have been friends for 10 years." },
+                    { question: "I have just moved to the city and want to make some friends. Can you give me some advice?", suggestion: "<b>Cấu trúc:</b> You should... It’s advisable for you to...<br><b>Câu mẫu:</b> You should help your co-workers or neighbors when they need. It’s advisable for you to have a small party and invite them to come. You can make friends with them easily by this way." },
+                    { question: "Do you think now it is easier to make friends?", suggestion: "<b>Cấu trúc:</b> I think it is quite easy to make friends now because... Also, with the help of...<br><b>Câu mẫu:</b> I think it is quite easy to make friends now because there are many kinds of clubs that you can join. You can make friends with other members of the club who have the same hobbies. Also, with the help of technology and social media like Facebook or Zalo, people can make friends with others quickly and easily." }
+                ],
+                "Part 4": {
+                    scenario: "We would like to organize some monthly face-to-face meetings. We would like your suggestions about when and where we could meet. It should suit both young and older people.",
+                    friend_email: {
+                        prompt: "Write to your friend about your feelings and your suggestions (50 words).",
+                        suggestion: "<b>Nội dung:</b> Báo tin (Have you got the latest email...). Đưa ra gợi ý về địa điểm (Do you think ABC Park is the best place?).",
+                        sample: "Hi Jane,\n\nIt’s Mary. Have you got the latest email from our club regarding the face-to-face meetings? Do you think ABC Park is the best place where we could meet? I think it is OK to organize the meetings there. What do you think? Let’s discuss it over lunch.\n\nSee you later."
+                    },
+                    manager_email: {
+                        prompt: "Write to the president of the club and express your suggestions (120-150 words).",
+                        suggestion: "<b>Thân bài:</b> Đề xuất về thời gian (at the weekend when people are free). Đề xuất về địa điểm (organize the meetings at ABC Park). Nêu các lý do cho địa điểm đó (convenient, spacious, beautiful).",
+                        sample: "Dear Sir,\n\nMy name is Mary. I have been a member of our club for 6 months. I have got the email from our club regarding the face-to-face meetings. I am writing this email to give you my suggestions about when and where we could meet.\n\nAbout the time we could meet, I think we should organize the meetings at the weekend when people are free. Regarding the place, it is a good idea for us to organize the meetings at ABC Park for some reasons. First, it is located in the city centre so it is quite convenient for everyone to come here. Second, it is spacious so a big number of people can take part in. Last, it is very beautiful with green trees and flowers. People can enjoy fresh air and watch the beauty of the nature. It is really relaxing and enjoyable.\n\nHopefully, my suggestions will be useful to our club.\n\nBest regards,"
+                    }
+                }
+            },
+            "Television": {
+                "Part 1": [
+                    { question: "Where do you live?", suggestion: "<b>Câu mẫu:</b> I live in Hanoi." },
+                    { question: "What do you do to keep fit?", suggestion: "<b>Câu mẫu:</b> I play sports." },
+                    { question: "What’s your favourite kind of music?", suggestion: "<b>Câu mẫu:</b> I love Pop music." },
+                    { question: "What do you often do in your free time?", suggestion: "<b>Câu mẫu:</b> I read books." },
+                    { question: "What is your surname?", suggestion: "<b>Câu mẫu:</b> My surname is Nguyen." }
+                ],
+                "Part 2": [
+                    { question: "Do you usually watch TV?", suggestion: "<b>Cấu trúc:</b> I watch TV [every day]. It helps me... Additionally, it allows me to...<br><b>Câu mẫu:</b> I watch TV every day, after dinner. It helps me relax and reduce stress. Additionally, it allows me to update the information all over the world." }
+                ],
+                "Part 3": [
+                    { question: "What do you like to do when you watch TV?", suggestion: "<b>Cấu trúc:</b> When I watch TV, I enjoy... Sometimes, I have...<br><b>Câu mẫu:</b> When I watch TV, I enjoy sitting on a sofa and enjoy a cup of tea. Sometimes, I have some snack and fruits. It is not only relaxing but also enjoyable." },
+                    { question: "Do you like watching TV alone or with others?", suggestion: "<b>Cấu trúc:</b> I prefer watching TV with others, especially... because...<br><b>Câu mẫu:</b> I prefer watching TV with others, especially my family because I love my family and I want to spend more time with them and share happy moments with them." },
+                    { question: "Is it good for children to watch TV programs too much?", suggestion: "<b>Cấu trúc:</b> It is harmful for children to watch TV too much because... Moreover,...<br><b>Câu mẫu:</b> It is harmful for children to watch TV programs too much because it can cause some health problems like eyestrain and headache. Moreover, it can badly affect their study." }
+                ],
+                "Part 4": {
+                    scenario: "Your club is going to set up an event and choose a place so that foreigners can attend.",
+                    friend_email: {
+                        prompt: "Write an email to a friend, a member of the club to express your idea (50 words).",
+                        suggestion: "<b>Nội dung:</b> Báo tin và bày tỏ sự hào hứng (I am so excited). Đưa ra gợi ý về địa điểm (Do you think ABC Park is a great place?).",
+                        sample: "Hi Jane,\n\nIt’s Mary. Have you got the latest email from our club about the coming event? What do you think about it? I am so excited. Do you think ABC Park is a great place for the event? I am going to write an email to the manager to give him my suggestions.\n\nSee you later."
+                    },
+                    manager_email: {
+                        prompt: "Write an email to the manager to express your feeling and give him your suggestions about the place and activities of the event (120-150 words).",
+                        suggestion: "<b>Thân bài:</b> Đề xuất địa điểm (ABC Park is the most suitable) và nêu lý do (in the city center, convenient, large/spacious). Đề xuất các hoạt động (design some activities like teambuilding, games or singing).",
+                        sample: "Dear Manager,\n\nMy name is Susan. I have been a member of our club for 6 months. I have got the email from our club about the coming event. I am so excited about this event because I have been waiting for it for months. I am writing this email to give you my suggestions about the place as well as the activities for this event.\n\nRegarding the place where we can organize the event, I believe that ABC Park is the most suitable for some reasons. First, it is in the city center so it is convenient for everyone to come here. Second, it is really large/spacious so we can organize many activities. About the activities for the event, I think we can design some activities like teambuilding, games or singing.\n\nI hope that my suggestions will be useful for our club.\n\nThank you."
+                    }
+                }
+            },
+            "Fitness": {
+                "Part 1": [
+                    { question: "How many people are there in your family?", suggestion: "<b>Câu mẫu:</b> There are four people." },
+                    { question: "Who is your favourite person in your family?", suggestion: "<b>Câu mẫu:</b> I love my mother most." },
+                    { question: "How do you go to work every day?", suggestion: "<b>Câu mẫu:</b> I drive to work." },
+                    { question: "What is your favourite season?", suggestion: "<b>Câu mẫu:</b> I like summer best." },
+                    { question: "Do you do exercise in the morning?", suggestion: "<b>Câu mẫu:</b> Yes, I do." }
+                ],
+                "Part 2": [
+                    { question: "What sport do you want to take part in the club?", suggestion: "<b>Cấu trúc:</b> I would like to participate in... because...<br><b>Câu mẫu:</b> I would like to participate in soccer because it is the most popular sport and easy to play. It is fun because I can play with my friends in the club." }
+                ],
+                "Part 3": [
+                    { question: "Why did you join the club?", suggestion: "<b>Cấu trúc:</b> I joined the ... club because I am really keen on... It helps me...<br><b>Câu mẫu:</b> I joined the tennis club because I am really keen on playing tennis. It helps me relax and reduce stress after hard-working days. Additionally, I can have more friends when I am a member of this club." },
+                    { question: "I don’t have much time to join. Can you give me some advice?", suggestion: "<b>Cấu trúc:</b> It is advisable for you to... Another way is that...<br><b>Câu mẫu:</b> It is advisable for you to spend about thirty minutes after work playing tennis at your office or the place nearby. Another way is that you should get up earlier in the morning and play tennis for about thirty minutes." },
+                    { question: "Why do more people like keeping fit nowadays?", suggestion: "<b>Cấu trúc:</b> More and more people are becoming interested in keeping fit these days as it brings them some benefits. First,... Second,...<br><b>Câu mẫu:</b> More and more people are becoming interested in keeping fit these days as it brings them some benefits. First, it allows people to improve their health mentally and physically. Second, they become more confident." }
+                ],
+                "Part 4": {
+                    scenario: "In order to cut costs, we have to reduce the facilities that the club provides. Some members suggested closing the club shop; Other members suggested closing the café.",
+                    friend_email: {
+                        prompt: "Write an email to your friend who is also a member of the club (50 words).",
+                        suggestion: "<b>Nội dung:</b> Báo tin buồn (I am really sad about this news). Hỏi ý kiến và nêu lựa chọn của bạn (What do you think is the best choice? I think we should close the shop).",
+                        sample: "Hi Jane,\n\nHave you got the email from our club about cutting costs? I am really sad about this news. What do you think is the best choice? I think we should close the shop. Let’s discuss it over lunch.\n\nLove."
+                    },
+                    manager_email: {
+                        prompt: "Write an email to the manager (120-150 words).",
+                        suggestion: "<b>Thân bài:</b> Đưa ra lựa chọn (it is advisable to close the club shop). Giải thích lý do tại sao nên giữ lại cái còn lại (the café is more important, it is the place where we can eat... and enjoy coffee..., it connects all the members).",
+                        sample: "Dear Manager,\n\nMy name is Susan. I have been a member of our club for three months. I have got the email from our club regarding cutting costs. I feel very sad about this news. But this is the best way to cut costs. I am writing this email to give you some of my suggestions about this.\n\nIn my opinion, it is advisable to close the club shop where supporting equipment is sold because the café is more important. It is the place where we can eat snack and enjoy coffee after our workout. This is very necessary. Besides, the café is the place which connects all the members of the club. Here we can meet and share our experiences about our hobby or we can improve the relationship between members and members.\n\nI hope that my suggestions will be helpful for our club.\n\nBest regards,"
+                    }
+                }
+            },
+            "Museum": {
+                "Part 1": [
+                    { question: "What do you like to do in the evening?", suggestion: "<b>Câu mẫu:</b> I like to watch TV." },
+                    { question: "What is your favorite device?", suggestion: "<b>Câu mẫu:</b> It is my smart phone." },
+                    { question: "Where would you like to live?", suggestion: "<b>Câu mẫu:</b> In Hanoi." },
+                    { question: "Do you often use Facebook?", suggestion: "<b>Câu mẫu:</b> I use Facebook every day." },
+                    { question: "What do you do?", suggestion: "<b>Câu mẫu:</b> I am a doctor." }
+                ],
+                "Part 2": [
+                    { question: "Tell me about the last time you went to a museum.", suggestion: "<b>Cấu trúc:</b> The last time I went to a museum was... when... I went to...<br><b>Câu mẫu:</b> The last time I went to a museum was last month when I visited HCM city. I went to ABC Museum which was in the city center. It displayed a lot of objects in the past." }
+                ],
+                "Part 3": [
+                    { question: "Tell me about a time you went to the museum when you were a child.", suggestion: "<b>Cấu trúc:</b> It was about [X] years ago when I was [Y], my parents took me to...<br><b>Câu mẫu:</b> It was about 20 years ago when I was 8, my parents took me to HCM Museum which displayed a lot of things related to Uncle Ho, the greatest leader of Vietnam. It was the first time I had visited a museum." },
+                    { question: "My children want to visit museums. Should I take them to sport museums or war museum?", suggestion: "<b>Cấu trúc:</b> It is advisable for you to take them to... because...<br><b>Câu mẫu:</b> It is advisable for you to take them to war museum because they can see a lot things in the wars in the past like tanks, helicopter, hats, or clothes. I believe that the children will like it." },
+                    { question: "A lot of museums use technologies and videos in their exhibitions. Why are they so successful?", suggestion: "<b>Cấu trúc:</b> Technologies can make the exhibitions... and so they can... Videos can provide us...<br><b>Câu mẫu:</b> Technologies can make the exhibitions more interesting and so they can attract more people to come. Videos can provide us the most realistic life of the people in the past." }
+                ],
+                "Part 4": {
+                    scenario: "Normally, our museum does not issue entrance fees. However, some people suggest we should issue entrance fee to cover the museum’s maintenance cost. What do you think about this suggestion?",
+                    friend_email: {
+                        prompt: "Write an email to your friend (50 words).",
+                        suggestion: "<b>Nội dung:</b> Hỏi thăm về tin tức (Have you got the latest email...). Hỏi ý kiến bạn (Do you think we should issue entrance fee?).",
+                        sample: "Hi Jane,\n\nIt’s Mary. How’s it going? Have you got the latest email from our club about entrance fees? What do you think? Do you think we should issue entrance fee? Let’s discuss it over lunch.\n\nSee you soon."
+                    },
+                    manager_email: {
+                        prompt: "Write an email to the club (120-150 words).",
+                        suggestion: "<b>Thân bài:</b> Đưa ra ý kiến của bạn (I think that it is advisable for us to issue entrance fee). Giải thích lý do (we need money to maintain the museum, visitors are willing to pay, tickets are not expensive). Đưa thêm gợi ý khác (call for sponsorship).",
+                        sample: "Dear Mr. David,\n\nMy name is Mary. I have been a member of our club for six months. I have got the email from the club that we should issue entrance fee to cover the museum’s maintenance cost. I am writing this email to give you my suggestion.\n\nPeople may have different ideas about this. Personally, I think that it is advisable for us to issue entrance fee. I believe that most of the members will support this idea because we need money to maintain the museum and numerous activities. Nearly all the visitors are willing to pay some money for the tickets because the tickets are not expensive. In addition, to raise more money, it is a good idea for us to call for sponsorship from the local government, businesses or individuals in our area.\n\nI hope my ideas will be somewhat useful to our club.\n\nBest regards,"
+                    }
+                }
+            },
+            "Walking": {
+                "Part 1": [
+                    { question: "What is your name?", suggestion: "<b>Câu mẫu:</b> My name is Nguyen." },
+                    { question: "Where do you live?", suggestion: "<b>Câu mẫu:</b> I live in Vietnam." },
+                    { question: "How many people are there in your family?", suggestion: "<b>Câu mẫu:</b> There are four people." },
+                    { question: "What is your hobby?", suggestion: "<b>Câu mẫu:</b> I like watching movies." },
+                    { question: "What is your favorite singer?", suggestion: "<b>Câu mẫu:</b> It is Justin Bieber." }
+                ],
+                "Part 2": [
+                    { question: "Where do you often walk?", suggestion: "<b>Cấu trúc:</b> I often walk in... Here I can... It's...<br><b>Câu mẫu:</b> I often walk in the park near my house. Here I can enjoy fresh air and do some exercises. It’s relaxing and beneficial for my health." }
+                ],
+                "Part 3": [
+                    { question: "Tell me the last time you walked.", suggestion: "<b>Cấu trúc:</b> The last time I walked was... I got up... and went to...<br><b>Câu mẫu:</b> The last time I walked was yesterday morning. I got up early and went to the park with my children. We walked for about 30 minutes before I went home and started my work." },
+                    { question: "Walking is good. What are useful ways to encourage people to walk more?", suggestion: "<b>Cấu trúc:</b> There are some ways to encourage people to walk more. First,... Second,...<br><b>Câu mẫu:</b> There are some ways to encourage people to walk more. First, we can educate people about the health benefits of walking. Second, we can organize some walking events with big prizes." },
+                    { question: "Do you prefer slow walking or fast walking?", suggestion: "<b>Cấu trúc:</b> I prefer slow walking because... Also, I can...<br><b>Câu mẫu:</b> I prefer slow walking because it is more comfortable. Also, I can watch trees and flowers on the sides of the road, listen to the birds sing and talk with other people." }
+                ],
+                "Part 4": {
+                    scenario: "The club has planned to organize a walk across European countries. There were a few members of the group who suggested it, but it was said that it was unrealistic.",
+                    friend_email: {
+                        prompt: "Write an email to your friend (40-50 words).",
+                        suggestion: "<b>Nội dung:</b> Bày tỏ sự ngạc nhiên (Can you believe that...). Hỏi ý kiến (Do you think it is a crazy plan?).",
+                        sample: "Hi. It’s Jane,\n\nLong time no see. How’s it going? Can you believe that our club is planning organize a walk across European countries? Do you think it is a crazy plan? Let’s discuss it over lunch.\n\nCatch you later."
+                    },
+                    manager_email: {
+                        prompt: "Write an email to the club (120-150 words).",
+                        suggestion: "<b>Thân bài:</b> Bày tỏ ý kiến rằng kế hoạch là không thể (I found it impossible). Nêu ra các khó khăn. Khó khăn 1: Hành lý (luggage is so heavy). Khó khăn 2: Khoảng cách và thời gian (distance is too long, take many months). Khó khăn 3: Thời tiết (weather is extremely cold). Khó khăn 4: Sức khỏe và chi phí (get tired and sick, waste a lot of money).",
+                        sample: "Dear Sir,\n\nMy name is Susan, from ABC Club. I am writing this email to express my opinion about the plan to organize a walk across European countries.\n\nI have been told about the plan and I found it impossible as we will encounter a lot of difficulties. First, the luggage is so heavy and we cannot carry all. The distance is too long and it can take many months to walk all European countries. The weather in these countries is extremely cold. We may get very tired and sick. That can badly affect our health. Moreover, it can waste a lot of money for food, accommodation. Everything in these countries is very expensive and we do not have enough money to travel here. For these reasons, I think we cannot carry out this plan.\n\nThank you."
+                    }
+                }
+            },
+            "Photography": {
+                "Part 1": [
+                    { question: "Where are you from?", suggestion: "<b>Câu mẫu:</b> I'm from Hanoi." },
+                    { question: "What’s the weather like today?", suggestion: "<b>Câu mẫu:</b> It is warm and sunny." },
+                    { question: "What do you do in your free time?", suggestion: "<b>Câu mẫu:</b> I often read books." },
+                    { question: "What is your first language?", suggestion: "<b>Câu mẫu:</b> My first language is Vietnamese." },
+                    { question: "Who do you usually go to the movies with?", suggestion: "<b>Câu mẫu:</b> With my family." }
+                ],
+                "Part 2": [
+                    { question: "What is your favorite time and place to take pictures?", suggestion: "<b>Cấu trúc:</b> I really enjoy taking pictures in... because... Taking pictures in... is wonderful because...<br><b>Câu mẫu:</b> I really enjoy taking pictures in spring because the weather is very nice. It is warm, sunny and the nature is really beautiful with green trees and flowers. Taking pictures in the parks or mountainous areas is wonderful because I can enjoy fresh air and watch the beauty of the nature." }
+                ],
+                "Part 3": [
+                    { question: "What is your favorite photo?", suggestion: "<b>Cấu trúc:</b> I really like the picture I took in... last year when I...<br><b>Câu mẫu:</b> I really like the picture I took in Dalat last year when I visited a flower garden in the city centre of Dalat. I love the colors and the background of the picture. It’s so deep." },
+                    { question: "What kind of photos do you like to take?", suggestion: "<b>Cấu trúc:</b> I love... so I often... Sometimes, I take photos of...<br><b>Câu mẫu:</b> I love natural landscapes in mountainous areas and animals so I often go on a picnic in some wild places with my friends and takes a lot of photos there. Sometimes, I take photos of sunrise or sunset on the beach." },
+                    { question: "Is it good to take pictures with the phone?", suggestion: "<b>Cấu trúc:</b> Although cameras can take better pictures..., many people prefer to use their phones because...<br><b>Câu mẫu:</b> Although cameras can take better pictures than smart phones, many people prefer to use their phones because it is much more convenient. With a smart phone, we can takes pictures easily and we can send to our friends quickly." }
+                ],
+                "Part 4": {
+                    scenario: "Our club is organizing an exhibition to show people’s best photos. We will have a talk. Please give some suggestions to attract all ages to join.",
+                    friend_email: {
+                        prompt: "Write an email to your friend (50 words).",
+                        suggestion: "<b>Nội dung:</b> Báo tin (Did you know about...). Hỏi ý kiến và đưa ra gợi ý (Any ideas to make it a hit? Do you think we should offer free tickets?).",
+                        sample: "Hi Jane,\n\nLong time no see. How’s it going? Did you know about the upcoming exhibition of our club? The manager need our suggestions. Any ideas to make it a hit? Do you think we should offer free tickets for students and residents nearby? Let’s chat and share our thoughts over lunch.\n\nCatch you later."
+                    },
+                    manager_email: {
+                        prompt: "Write an email to the club (120-150 words).",
+                        suggestion: "<b>Thân bài:</b> Đưa ra các đề xuất để thu hút khán giả. Đề xuất 1: Quảng bá (promote the exhibition on social media). Đề xuất 2: Nội dung (invite a professional and well-known photographer to share their experiences). Đề xuất 3: Phí vào cửa (the entrance fee must be free).",
+                        sample: "Dear Sir,\n\nMy name is Susan. I have been a member of our club for 6 months. I am writing this mail to give you my suggestions about the photo exhibition so that we can attract more audience.\n\nTo be able to attract diverse people to join in our exhibition, we need to promote the exhibition on social media like the Internet, flyers or local newspaper. The content of the exhibition must be interesting and useful. We can invite a professional and well-known photographer to share their experiences or tips to have more beautiful photos. One important factor that we should consider is that the entrance fee must be free.\n\nI hope my ideas will be somewhat useful to our club.\n\nThank you."
+                    }
+                }
+            },
+            "Book": {
+                "Part 1": [
+                    { question: "What is your favorite color?", suggestion: "<b>Câu mẫu:</b> I like pink." },
+                    { question: "Where is your hometown?", suggestion: "<b>Câu mẫu:</b> My hometown is Yen Bai." },
+                    { question: "What is your favorite season?", suggestion: "<b>Câu mẫu:</b> I love spring." },
+                    { question: "What is your favorite place?", suggestion: "<b>Câu mẫu:</b> I love my house." },
+                    { question: "How old are you?", suggestion: "<b>Câu mẫu:</b> 19 years old." }
+                ],
+                "Part 2": [
+                    { question: "Why did you join the club?", suggestion: "<b>Cấu trúc:</b> I really like... It helps me...<br><b>Câu mẫu:</b> I really like reading books. It is fun and useful. It helps me relax after work, reduce stress and broaden my mind because there are numerous interesting stories and useful lessons." }
+                ],
+                "Part 3": [
+                    { question: "What is your favorite kind of book?", suggestion: "<b>Cấu trúc:</b> I am really interested in... which help me...<br><b>Câu mẫu:</b> I am really interested in science books which help me understand more about the world around us. I am so curious about how things work. Moreover, science allows us to have inventions to make our life better." },
+                    { question: "When and where do you read books?", suggestion: "<b>Cấu trúc:</b> I usually read books... I often go to...<br><b>Câu mẫu:</b> I usually read books after studying or at the weekend when I have free time. I often go to the library near my house because I can borrow many good books there or sometimes I go to a café in the outskirt where I can enjoy coffee at the same time." },
+                    { question: "Many people are busy and they do not have time to read books. What do you think?", suggestion: "<b>Cấu trúc:</b> I agree that many people are too busy to read books. However, it is not good for...<br><b>Câu mẫu:</b> I agree that many people are too busy to read books. However, it is not good for both mental and physical health. They should have some time to relax and reading books is the best way for these people because they can read anywhere at any time." }
+                ],
+                "Part 4": {
+                    scenario: "The local authorities have announced that the public library may close next year because there are few people going there to read books.",
+                    friend_email: {
+                        prompt: "Write an email to your friend (50 words).",
+                        suggestion: "<b>Nội dung:</b> Báo tin xấu (Do you know that...). Bày tỏ cảm xúc (It’s bad news for all the members...). Nêu ý định (I am going to write an email to the manager...).",
+                        sample: "Hi Jane,\n\nIt’s Mary. How’s it going? Do you know that club is going close the public library? What do you think? It’s bad news for all the members because it’s the only place we can read and borrow books. I am going to write an email to the manager to express my ideas.\n\nSee you later,"
+                    },
+                    manager_email: {
+                        prompt: "Write an email to the club with your suggestions (120-150 words).",
+                        suggestion: "<b>Thân bài:</b> Bày tỏ cảm xúc (I feel so sad and disappointed...). Đưa ra các giải pháp để thu hút người đọc (offer some free books, collect more books, organize some events, raise people’s awareness...).",
+                        sample: "Dear Manager,\n\nMy name is Mary. I have been a member of our club for 6 months. I am writing this in response the latest announcement from our club.\n\nAccording to this email, we are going to close the library next year because there are few people going there to read books. To be honest, I feel so sad and disappointed and I believe other members of our club will share my sentiments because we no longer have a place to read books and interact with book lovers.\n\nTo encourage more people to come the library, there are some solutions we can consider. First, it is advisable to offer some free books for those who are interested in reading books and collect more books. Another solution is that we can organize some events to attract more people’s attention. Another solution is to raise people’s awareness of the importance of reading books. I believe this is the most effective long term solution.\n\nHopefully, my suggestions will be useful to our club.\n\nRegards,"
+                    }
+                }
+            },
+            "Sports": {
+                "Part 2": [
+                    { question: "Why did you decide to join the club?", suggestion: "<b>Câu mẫu:</b> I joined the club because I loved playing sports and I could meet some people who have the same hobbies as me." }
+                ],
+                "Part 3": [
+                    { question: "When was the last time you played sports?", suggestion: "<b>Cấu trúc:</b> The last time I played sports was... I played... with...<br><b>Câu mẫu:</b> The last time I played sports was last week. I played football with my friends for about one hour at the park near my house. After that we had some beer in the canteen nearby." },
+                    { question: "I usually play sports with my friends and watch sports programs. What about you?", suggestion: "<b>Cấu trúc:</b> I love sports, too. I often play sports... because... Besides, it allows me to...<br><b>Câu mẫu:</b> I love sports, too. I often play sports in my free time because it helps me relax and improve my health. Besides, it allows me to keep fit and prevent health problems. I love watching football on TV, too. It’s interesting." },
+                    { question: "I like playing sports with my friend but my brother likes playing sports alone. What do you think about this issue?", suggestion: "<b>Cấu trúc:</b> I think it depends on people’s preference. Personally, I think that...<br><b>Câu mẫu:</b> I think it depends on people’s preference. Personally, I think that playing alone is boring. I love playing sports with my friends because it is much more enjoyable. Besides, we can have make more friends." }
+                ],
+                "Part 4": {
+                    scenario: "The club needs suggestions about the organization of a sports competition for young members.",
+                    friend_email: {
+                        prompt: "Write an email to your friend (50 words).",
+                        suggestion: "<b>Nội dung:</b> Báo tin và bày tỏ sự hào hứng (I feel so excited...). Đưa ra ý tưởng (post the announcement on the website...).",
+                        sample: "Hi Jane,\n\nIt’s Mary. Did you know that we are going to organize a sports campaign to attract more members to play sports and join our club? I feel so excited about this news. I think it is better to post the announcement on the website of the club for members to express their ideas. What do you think? Let’s discuss it over lunch.\n\nSee you later."
+                    },
+                    manager_email: {
+                        prompt: "Write an email to the manager of the club (120-150 words).",
+                        suggestion: "<b>Thân bài:</b> Đưa ra các đề xuất để khuyến khích người trẻ tham gia. Đề xuất 1: Nâng cấp cơ sở vật chất (upgrade the facilities). Đề xuất 2: Lấy ý kiến chuyên gia (get advice from trainers). Đề xuất 3: Đa dạng hóa hoạt động (vary the activities including some interesting competitions or games).",
+                        sample: "Dear Manager,\n\nMy name is Mary. I have been a member of our club for six months. I am writing this email in response to the latest announcement from the club about the sports campaign.\n\nAccording to the announcement, we are going to organise a sports campaign to attract more members to play sports and join our club. Honestly, I feel so excited about this news and I believe that most of the members in our club will share my sentiments.\n\nTo encourage young people to join our club, it is advisable for us to upgrade the facilities because some of these are old and outdated. We can get advice from trainers because they have experience and expertise. In addition, I suggest we should vary the activities including some interesting competitions or games with big prizes. It is better to post these on social networking sites including Facebook or Instagram.\n\nI hope that these ideas will be useful to our club.\n\nBest regards,"
+                    }
+                }
+            },
+            "Debate": {
+                "Part 2": [
+                    { question: "What do you often talk about with your friend?", suggestion: "<b>Câu mẫu:</b> We often talk about children, jobs and hobbies because we are really interested in these things now. When we share these things with each other, we can get good advice from the others." }
+                ],
+                "Part 3": [
+                    { question: "There are so many different ways to follow the news these days. How do you learn about world issues?", suggestion: "<b>Cấu trúc:</b> I usually update information from... Among these, ... is the fastest way because...<br><b>Câu mẫu:</b> I usually update information from Facebook, television or other people. Among these, Facebook is the fastest way to learn about world issues because the news is updated every minute." },
+                    { question: "I am going to take part in a debate next week in front of fifty people. How can I make a good impression? Can you give me some advice?", suggestion: "<b>Cấu trúc:</b> The first thing you need to do is... Remember to... When you speak, try to...<br><b>Câu mẫu:</b> The first thing you need to do is preparing your speech well. Remember to wear formal clothes which you feel comfortable and confident. When you speak, try to keep eye contact and use your body language properly." },
+                    { question: "Before you can make a decision about any subject, you need to think about both sides of the argument. What do you think about this?", suggestion: "<b>Cấu trúc:</b> I totally agree with this idea because we need to... By this way, we can...<br><b>Câu mẫu:</b> I totally agree with this idea because we need to listen from both sides to understand the matter clearly. By this way, we can make a good decision to fix the problem or improve the situation." }
+                ],
+                "Part 4": {
+                    scenario: "We would like to encourage more young people to join our club. Unfortunately, young people often think debating is not for them. What do you think about the benefits of learning how to debate topical issues and speak in public?",
+                    friend_email: {
+                        prompt: "Write an email to your friend about your ideas (50 words).",
+                        suggestion: "<b>Nội dung:</b> Báo tin (Have you got the email...). Nêu lên tầm quan trọng của việc tranh biện (learning how to debate... is really important...).",
+                        sample: "Hi Jane,\n\nIt’s Mary. How’s it going? Have you got the email from the club about the plan to encourage more people to join our club? I think learning how to debate topical issues and speak in public is really important as it can bring us a lot of benefits. What do you think? Let’s discuss it over lunch.\n\nSee you later."
+                    },
+                    manager_email: {
+                        prompt: "Write an email to the manager of the club about your ideas (120-150 words).",
+                        suggestion: "<b>Thân bài:</b> Nêu sự cần thiết phải cho người trẻ thấy lợi ích của tranh biện (it is necessary for us to tell them the benefits). Liệt kê các lợi ích: phát triển tư duy phản biện (develop our critical thinking), trở nên mạnh mẽ và độc lập hơn (become stronger and more independent), tốt cho sự nghiệp (good for our career).",
+                        sample: "Dear Sir/ Madam,\n\nMy name is Mary, I have been a member of our club for 6 months. I have got the latest email from our club. I am writing this email to express my ideas.\n\nAccording to the email, we would like to encourage more young people to join our club. However, they think the debating club is not suitable for them. Therefore, it is necessary for us to tell them the benefits of learning how to debate and speak in public. The very first benefit we can think of is that it helps us to develop our critical thinking. Another benefit is that it allows us to become stronger and more independent. One more benefit is that speaking in public is good for our career in the future.\n\nHopefully, my suggestions will be somewhat useful to our club.\n\nBest regards."
+                    }
+                }
+            },
+            "Art": {
+                "Part 2": [
+                    { question: "Tell me a painting or a photo that you like.", suggestion: "<b>Cấu trúc:</b> I really love the photo of... that was taken...<br><b>Câu mẫu:</b> I really love the photo of my family that was taken about two years ago when I left university. Everyone in the picture smiled happily. I hang this photo in the living room where everyone can see it." }
+                ],
+                "Part 3": [
+                    { question: "I kept painting for a long time. Tell me a thing that you have had for a long time.", suggestion: "<b>Cấu trúc:</b> Reading book is my hobby that I have had for a long time because...<br><b>Câu mẫu:</b> Reading book is my hobby that I have had for a long time because it is really interesting and useful. It helps me relax and reduce stress after work. Also, it allows me to broaden my mind as I can learn a lot of useful things from books." },
+                    { question: "I would like to learn to paint, but I have not yet found an effective way. Should I take a course at my local college?", suggestion: "<b>Cấu trúc:</b> It is advisable for you to... and I think it is the best way because...<br><b>Câu mẫu:</b> It is advisable for you to take a course at your local college and I think it is the best way to learn how to paint because it is easier to learn directly from teachers. Also, you can meet many people who have the same hobby as you." },
+                    { question: "Street art – where people paint on the building – is becoming popular. However, some people criticize that it is bad. What is your opinion?", suggestion: "<b>Cấu trúc:</b> Everyone has different opinions about... For me, I think that...<br><b>Câu mẫu:</b> Everyone has different opinions about street art. For me, I think that street art is not bad if we do it in the right place. Sometimes, it can make the streets, especially the old ones, more beautiful and special." }
+                ],
+                "Part 4": {
+                    scenario: "The Art Club is organizing a talk to the public to attract more attention. We are going to invite an artist to give a talk. Could you give us an artist to join our talk and what topic should they share to gain more attention? Especially, we would like to have more both young and elderly members.",
+                    friend_email: {
+                        prompt: "Write an email to your friend (50 words).",
+                        suggestion: "<b>Nội dung:</b> Báo tin vui (I got great news). Bày tỏ sự hào hứng (I am over the moon). Đề xuất nghệ sĩ (How about we invite Johnson...?).",
+                        sample: "Hey Dan,\n\nGuess what. I got great news. The club is organizing a public talk from an artist. Oh! I am over the moon. You know, I am looking forward to this event for a long time. How about you? Do you think we should invite Johnson, the artist who got the first prize last month? Let’s discuss over coffee time.\n\nSee you,"
+                    },
+                    manager_email: {
+                        prompt: "Write an email to the organizer of the plan (120-150 words).",
+                        suggestion: "<b>Thân bài:</b> Đề xuất một nghệ sĩ cụ thể và lý do (invite Mr John, a well-known artist... who can attract more people). Đưa ra các gợi ý để sự kiện thành công (promote the events on social networking sites, offer free tickets).",
+                        sample: "Dear Sir,\n\nMy name is Hang. I have been a member of the club since July. I am writing this email to express my feelings about your latest email.\n\nAccording to the email, our Art club is planning to organize a public talk with an artist to attract more participants. In my opinion, it is a good idea to invite Mr John, a well-known artist who got the first prize in the contest last month. He is the most handsome and humorous artist who can attract more people to come.\n\nTo make the event become successful, I think we should promote the events on social networking sites including Facebook, Instagram so that more people know about the event. Also, it is advisable for us to offer free tickets for visitors.\n\nI hope my suggestions are useful to our club.\n\nBest regards,"
+                    }
+                }
+            },
+            "English": {
+                "Part 2": [
+                    { question: "What do you usually use the Internet for?", suggestion: "<b>Câu mẫu:</b> I use the Internet almost every time because it’s necessary for my life. I usually use it to search the daily information and watch movies on websites." }
+                ],
+                "Part 3": [
+                    { question: "Do you usually spend six hours a day studying English? How do you learn English?", suggestion: "<b>Cấu trúc:</b> I just spend [X] hours per day... At first, I try to... and then...<br><b>Câu mẫu:</b> I just spend 2 hours per day learning English, not too much but it’s effective for me. At first, I try to learn how to speak English correctly and then gaining more vocabulary as much as possible is a must-to-do thing." },
+                    { question: "English is a popular language in the world. What are your thoughts on this idea?", suggestion: "<b>Cấu trúc:</b> I totally agree with this statement. English is an international language and...<br><b>Câu mẫu:</b> I totally agree with this statement. English is an international language and it’s used in many countries. A lot of people try to learn English to get a better job with a high salary in foreign companies." },
+                    { question: "When do you usually use English?", suggestion: "<b>Cấu trúc:</b> I use English to... because... Moreover, I also use it to...<br><b>Câu mẫu:</b> I use English to talk with my teachers and my friends at school because I study in an international school so English is our main language of communicate with each other. Moreover, I also use it to talk with customers when I’m at work." }
+                ],
+                "Part 4": {
+                    scenario: "Nowadays more and more new words and phrases are added to the language. Some people gladly accept while others argue that there should be rules for language.",
+                    friend_email: {
+                        prompt: "Write an email to your friend (50 words).",
+                        suggestion: "<b>Nội dung:</b> Đặt vấn đề (Have you noticed how language is constantly added...). Nêu ra hai luồng ý kiến (Some people are interested..., while others argue...). Hỏi ý kiến bạn.",
+                        sample: "Hey,\n\nHope you're doing well! Have you noticed how language is constantly added with new words and phrases? It's fascinating! Some people are interested in the changes, while others argue for language rules. I'm curious to hear your opinions on this. Let's catch up soon and chat about it.\n\nTake care,\nSam"
+                    },
+                    manager_email: {
+                        prompt: "Write an email to the club manager to express your views and explain why so many people react like this (120-150 words).",
+                        suggestion: "<b>Thân bài:</b> Trình bày quan điểm của bạn về vấn đề. Đề xuất một giải pháp để giải quyết sự tranh cãi trong CLB (host a discussion or event on this topic, encouraging open conversation).",
+                        sample: "Dear Sir,\n\nMy name is Sam. I have been in your club for almost 5 months. I trust this message finds you well. I wanted to share my thoughts on adding new words and phrases to the language. While some individuals are glad about the changes, there is a noticeable strong reaction to language rules.\n\nTo make this issue better, it might be beneficial for our club to host a discussion or event on this topic, encouraging open conversation among members. Understanding a wide range of perspectives can enrich our community and foster a welcoming environment for all language enthusiasts. I believe that a lot of members of the club will support this idea.\n\nThank you for considering my suggestion.\n\nBest regards,\nSam"
+                    }
+                }
+            },
+            "Film": {
+                "Part 1": [
+                    { question: "Where are you from?", suggestion: "<b>Câu mẫu:</b> I'm from Vietnam." },
+                    { question: "What do you like to do in the morning?", suggestion: "<b>Câu mẫu:</b> I like to do exercise." },
+                    { question: "What is the weather like today?", suggestion: "<b>Câu mẫu:</b> It's cool and windy." },
+                    { question: "When do you study?", suggestion: "<b>Câu mẫu:</b> I study in the evening." },
+                    { question: "Do you like dancing?", suggestion: "<b>Câu mẫu:</b> No, I don't." }
+                ],
+                "Part 2": [
+                    { question: "When and where do you watch movies?", suggestion: "<b>Gợi ý:</b> I often watch movies at home on my laptop at the weekend. It's very relaxing." }
+                ],
+                "Part 3": [
+                    { question: "Tell me the last time you watched a movie.", suggestion: "<b>Cấu trúc:</b> The last time I watched a movie was... I watched... with...<br><b>Gợi ý:</b> The last time I watched a movie was last Saturday. I watched a new action movie at the cinema with my friends. It was exciting." },
+                    { question: "Do you like watching movies with your language or foreign language?", suggestion: "<b>Gợi ý:</b> I prefer watching movies in a foreign language (like English) with subtitles. It helps me improve my listening skills." },
+                    { question: "I think films made in the past like black-and-white films are outdated and we shouldn’t watch them. What do you think?", suggestion: "<b>Cấu trúc:</b> I don't completely agree. Although they are old, many black-and-white films are...<br><b>Từ vựng:</b> classics, have great stories, artistic value." }
+                ],
+                "Part 4": {
+                    scenario: "Our club is going to have a meeting for all members to attend. In this meeting, we will invite a famous film critic to present. Please give some suggestions about who we should invite and what topics we can talk about to attract both young and old people.",
+                    friend_email: {
+                        prompt: "Write an email to your friend (50 words).",
+                        suggestion: "<b>Nội dung:</b> Báo tin (Our club is going to have a meeting...). Đưa ra ý tưởng về khách mời và chủ đề.",
+                        sample: "Hi [Friend's Name],\n\nDid you hear our club is inviting a famous film critic for a meeting? I'm so excited! I think we should invite Mr. Le Hong Lam. For the topic, maybe something about the difference between old and new Vietnamese films to attract everyone. What do you think?\n\nTalk soon,"
+                    },
+                    manager_email: {
+                        prompt: "Write an email to the club and give your idea (120-150 words).",
+                        suggestion: "<b>Thân bài:</b> Đề xuất một nhà phê bình cụ thể và lý do (I would like to suggest inviting...). Đề xuất chủ đề phù hợp với nhiều lứa tuổi (I think a great topic would be...). Giải thích tại sao chủ đề đó hấp dẫn (This topic can attract young people... and also interest older members...).",
+                        sample: "Dear Manager,\n\nMy name is [Your Name], and I'm writing in response to the request for suggestions for our upcoming meeting.\n\nI am very excited about the idea of inviting a famous film critic. To attract both young and old members, I would like to suggest inviting Mr. Le Hong Lam. He is very well-known and respected by different generations of film lovers in Vietnam.\n\nFor the topic, I think we could ask him to talk about 'The Evolution of Vietnamese Cinema: From Past to Present'. This topic would be fascinating for older members who grew up with older films, and also educational for younger members who are more familiar with modern movies. It would create a great discussion for everyone.\n\nThank you for considering my suggestions.\n\nBest regards,"
+                    }
+                }
+            },
+            "College": {
+                "Part 1": [
+                    { question: "What is your surname?", suggestion: "<b>Câu mẫu:</b> My surname is Tran." },
+                    { question: "How did you come here?", suggestion: "<b>Câu mẫu:</b> I came by bus." },
+                    { question: "What language do you speak?", suggestion: "<b>Câu mẫu:</b> I speak Vietnamese and English." },
+                    { question: "What is your favourite subject?", suggestion: "<b>Câu mẫu:</b> My favourite subject is Math." },
+                    { question: "Who is your best friend?", suggestion: "<b>Câu mẫu:</b> My best friend is Nam." }
+                ],
+                "Part 2": [
+                    { question: "Please tell us about the days and times you can attend courses and what you would like to study.", suggestion: "<b>Cấu trúc:</b> I am available on... I would like to study... because...<br><b>Câu mẫu:</b> I am available on Monday and Tuesday afternoons. I would like to study English because I believe it will be beneficial for my career and help me communicate globally." }
+                ],
+                "Part 3": [
+                    { question: "Hi! Welcome to college. What course are you doing and why did you choose it?", suggestion: "<b>Cấu trúc:</b> I am studying... I chose this course because...<br><b>Câu mẫu:</b> I am studying English. I chose this course because it is essential for my future job. If I can speak English well, I will be able to communicate with people all over the world." },
+                    { question: "Welcome! How do you feel about the college so far?", suggestion: "<b>Cấu trúc:</b> I think the college is... I can learn...<br><b>Câu mẫu:</b> I think the college is great. I am learning numerous useful things from well-qualified teachers and making friends with smart and studious students. I really like the environment here." },
+                    { question: "Did you hear that the college sports club has closed? What do you think about this?", suggestion: "<b>Cấu trúc:</b> Yes, I heard. It's really disappointing because...<br><b>Câu mẫu:</b> Yes, I heard. It's really disappointing because the sports club was a place where we could play sports and have fun together. Many students will miss it." }
+                ],
+                "Part 4": {
+                    scenario: "We are writing to inform you that the end of course exams will now take place two weeks earlier than originally planned. Your exam, which was scheduled for the 21st of next month, will now take place on the 7th of next month.",
+                    friend_email: {
+                        prompt: "Write an email to your friend. Write about your feelings and what you think the college should do about the situation (50 words).",
+                        suggestion: "<b>Nội dung:</b> Báo tin gây sốc (Did you know that...). Bày tỏ cảm xúc (It’s unbelievable. I’m so stressed...). Nêu ý định (I am going to write a letter...).",
+                        sample: "Hi Dan,\n\nDid you know that the exams will take place two weeks earlier? It’s unbelievable. How can I prepare for the exam now? There’s so little time left. I’m so stressed now. It’s not fair for us. I am going to write a letter to the college administrator to express my feeling about this.\n\nSee you soon."
+                    },
+                    manager_email: {
+                        prompt: "Write an email to the college administrator. Write about your feelings and what you think the college should do about the situation (120 – 150 words).",
+                        suggestion: "<b>Thân bài:</b> Bày tỏ cảm xúc về sự thay đổi đột ngột (I feel so shocked and stressed with this sudden change). Giải thích lý do tại sao nó gây khó khăn (we have so many tests to do, need more time to revise). Đề xuất giải pháp (the college should reconsider the decision and keep the original schedule).",
+                        sample: "Dear Administrator,\n\nMy name is Susan, from Group K31D, Marketing Department. I am writing this email to express my feelings about the the latest notification I got this morning.\n\nAccording to the announcement, our exam will take place two weeks earlier than originally planned. To be honest, I feel so shocked and stressed with this sudden change as we have so many tests to do and need more time to revise all the knowledge we have learnt. I think that most of the students in this college will share my sentiments and we do not agree with this change as it causes a lot of unnecessary stress for all students and may negatively affect the results of the exams. Therefore, I think the college should reconsider the decision and keep the original schedule.\n\nI hope that my ideas will be considered.\n\nBest regards,"
+                    }
+                }
+            }
+        };
+
+        // --- SCRIPT SECTION ---
+        const topicSelect = document.getElementById('topic-select');
+        const practiceContainer = document.getElementById('practice-container');
+        const practiceArea = document.getElementById('practice-area');
+        const welcomeMessage = document.getElementById('welcome-message');
+        const combinedPracticeBtn = document.getElementById('combined-practice-btn');
+        const tabPart123 = document.getElementById('tab-part123');
+        const tabPart4 = document.getElementById('tab-part4');
+        let currentTopic = '';
+        let currentTab = 'part123';
+
+        // Function to create topic options
+        function createTopicOptions() {
+            const allTopics = Object.keys(practiceData).sort();
+            
+            allTopics.forEach(topic => {
+                const option = document.createElement('option');
+                option.value = topic;
+                option.textContent = topic;
+                topicSelect.appendChild(option);
+            });
+        }
+
+        // Event listener for topic selection
+        topicSelect.addEventListener('change', (e) => {
+            currentTopic = e.target.value;
+            if (currentTopic) {
+                welcomeMessage.style.display = 'none';
+                practiceContainer.style.display = 'block';
+                currentTab = 'part123'; // Reset to default tab
+                setActiveTab(currentTab);
+            } else {
+                practiceContainer.style.display = 'none';
+                welcomeMessage.style.display = 'block';
+            }
+        });
+
+        // Tab switching logic
+        tabPart123.addEventListener('click', () => {
+            currentTab = 'part123';
+            setActiveTab(currentTab);
+        });
+        tabPart4.addEventListener('click', () => {
+            currentTab = 'part4';
+            setActiveTab(currentTab);
+        });
+
+        function setActiveTab(tabId) {
+            practiceArea.innerHTML = `<div class="loader"></div>`;
+            
+            tabPart123.classList.remove('active');
+            tabPart4.classList.remove('active');
+            document.getElementById(`tab-${tabId}`).classList.add('active');
+
+            setTimeout(() => {
+                if (tabId === 'part123') {
+                    displayParts123(currentTopic);
+                } else {
+                    displayPart4(currentTopic);
+                }
+            }, 300);
+        }
+
+        // Function to display questions for Parts 1, 2, 3
+        function displayParts123(topicName, questionsToShow = null) {
+            practiceArea.innerHTML = '';
+            let questions = [];
+            if (questionsToShow) {
+                questions = questionsToShow;
+                 const title = document.createElement('h2');
+                 title.className = 'text-3xl font-bold mb-6 text-indigo-700';
+                 title.textContent = "Luyện Tập Tổng Hợp";
+                 practiceArea.appendChild(title);
+            } else {
+                const topicData = practiceData[topicName];
+                if (topicData) {
+                    ['Part 1', 'Part 2', 'Part 3'].forEach(part => {
+                        if (topicData[part]) {
+                            topicData[part].forEach(q => questions.push({ ...q, part }));
+                        }
+                    });
+                }
+            }
+
+            if (questions.length === 0) {
+                practiceArea.innerHTML = `<div class="bg-white p-6 rounded-xl shadow-md text-center">
+                    <h3 class="text-xl font-semibold text-slate-700">Nội dung đang được cập nhật</h3>
+                    <p class="text-slate-500 mt-2">Câu hỏi cho chủ đề '${topicName}' sẽ sớm được bổ sung.</p>
+                </div>`;
+                return;
+            }
+
+            questions.forEach((q) => {
+                const questionCard = createQuestionCard(q);
+                practiceArea.appendChild(questionCard);
+            });
+        }
+
+        // Function to translate scenarios to Vietnamese
+        function translateScenario(scenario) {
+            const translations = {
+                "In order to cut costs, we have to reduce the facilities that the club provides. Some members suggested closing the club shop; Other members suggested closing the café.": "Để cắt giảm chi phí, chúng ta phải giảm bớt các tiện ích mà câu lạc bộ cung cấp. Một số thành viên đề xuất đóng cửa cửa hàng của câu lạc bộ; Những thành viên khác đề xuất đóng cửa quán cà phê.",
+                
+                "Normally, our museum does not issue entrance fees. However, some people suggest we should issue entrance fee to cover the museum's maintenance cost. What do you think about this suggestion?": "Thông thường, bảo tàng của chúng ta không thu phí vào cửa. Tuy nhiên, một số người đề xuất chúng ta nên thu phí vào cửa để trang trải chi phí bảo trì bảo tàng. Bạn nghĩ gì về đề xuất này?",
+                
+                "The club has planned to organize a walk across European countries. There were a few members of the group who suggested it, but it was said that it was unrealistic.": "Câu lạc bộ đã lên kế hoạch tổ chức một cuộc đi bộ xuyên qua các nước châu Âu. Có một vài thành viên trong nhóm đã đề xuất điều này, nhưng được cho là không thực tế.",
+                
+                "Our club is organizing an exhibition to show people's best photos. We will have a talk. Please give some suggestions to attract all ages to join.": "Câu lạc bộ của chúng ta đang tổ chức một cuộc triển lãm để trưng bày những bức ảnh đẹp nhất của mọi người. Chúng ta sẽ có một buổi nói chuyện. Vui lòng đưa ra một số gợi ý để thu hút mọi lứa tuổi tham gia.",
+                
+                "The local authorities have announced that the public library may close next year because there are few people going there to read books.": "Chính quyền địa phương đã thông báo rằng thư viện công cộng có thể đóng cửa vào năm tới vì có ít người đến đó đọc sách.",
+                
+                "The club needs suggestions about the organization of a sports competition for young members.": "Câu lạc bộ cần các gợi ý về việc tổ chức một cuộc thi thể thao cho các thành viên trẻ tuổi.",
+                
+                "We would like to encourage more young people to join our club. Unfortunately, young people often think debating is not for them. What do you think about the benefits of learning how to debate topical issues and speak in public?": "Chúng tôi muốn khuyến khích nhiều người trẻ tham gia câu lạc bộ của chúng tôi. Thật không may, người trẻ thường nghĩ rằng tranh luận không dành cho họ. Bạn nghĩ gì về lợi ích của việc học cách tranh luận các vấn đề thời sự và nói trước công chúng?",
+                
+                "The Art Club is organizing a talk to the public to attract more attention. We are going to invite an artist to give a talk. Could you give us an artist to join our talk and what topic should they share to gain more attention? Especially, we would like to have more both young and elderly members.": "Câu lạc bộ Nghệ thuật đang tổ chức một buổi nói chuyện với công chúng để thu hút sự chú ý. Chúng tôi sẽ mời một nghệ sĩ đến phát biểu. Bạn có thể cho chúng tôi biết nghệ sĩ nào để tham gia buổi nói chuyện và chủ đề gì họ nên chia sẻ để thu hút sự chú ý hơn? Đặc biệt, chúng tôi muốn có thêm cả thành viên trẻ tuổi và người lớn tuổi.",
+                
+                "Nowadays more and more new words and phrases are added to the language. Some people gladly accept while others argue that there should be rules for language.": "Ngày nay ngày càng có nhiều từ và cụm từ mới được thêm vào ngôn ngữ. Một số người vui vẻ chấp nhận trong khi những người khác lại tranh cãi rằng nên có quy tắc cho ngôn ngữ.",
+                
+                "Our club is going to have a meeting for all members to attend. In this meeting, we will invite a famous film critic to present. Please give some suggestions about who we should invite and what topics we can talk about to attract both young and old people.": "Câu lạc bộ của chúng ta sẽ có một cuộc họp cho tất cả các thành viên tham dự. Trong cuộc họp này, chúng ta sẽ mời một nhà phê bình phim nổi tiếng đến trình bày. Vui lòng đưa ra một số gợi ý về việc chúng ta nên mời ai và những chủ đề gì chúng ta có thể nói về để thu hút cả người trẻ và người già.",
+                
+                "We are writing to inform you that the end of course exams will now take place two weeks earlier than originally planned. Your exam, which was scheduled for the 21st of next month, will now take place on the 7th of next month.": "Chúng tôi viết thư để thông báo rằng các kỳ thi cuối khóa học giờ đây sẽ diễn ra sớm hơn hai tuần so với kế hoạch ban đầu. Kỳ thi của bạn, vốn được lên lịch vào ngày 21 tháng tới, giờ sẽ diễn ra vào ngày 7 tháng tới."
+            };
+            
+            return translations[scenario] || "Bản dịch đang được cập nhật...";
+        }
+
+        // Function to display content for Part 4
+        function displayPart4(topicName) {
+            practiceArea.innerHTML = '';
+            const topicData = practiceData[topicName];
+
+            if (topicData && topicData['Part 4']) {
+                const part4Data = topicData['Part 4'];
+                const part4Container = document.createElement('div');
+                part4Container.innerHTML = `
+                    <div class="bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 p-6 rounded-xl mb-8 shadow-lg">
+                        <div class="flex items-center mb-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-blue-600 mr-3"><path d="M14 9V5a3 3 0 0 0-6 0v4"></path><rect x="2" y="9" width="20" height="11" rx="2" ry="2"></rect></svg>
+                            <h3 class="text-2xl font-bold text-blue-800">Tình Huống (Scenario)</h3>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg border-l-4 border-blue-500 shadow-sm mb-4">
+                            <p class="text-lg text-slate-800 leading-relaxed mb-3">${part4Data.scenario}</p>
+                            <div class="mt-4 p-3 bg-blue-50 rounded-lg border border-blue-200">
+                                <h4 class="font-semibold text-blue-800 mb-2 flex items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><circle cx="12" cy="12" r="10"></circle><path d="M8 14s1.5 2 4 2 4-2 4-2"></path><path d="M9 9h.01"></path><path d="M15 9h.01"></path></svg>
+                                    Bản dịch tiếng Việt:
+                                </h4>
+                                <p class="text-slate-700 italic">${translateScenario(part4Data.scenario)}</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Email to Friend -->
+                    <div class="bg-gradient-to-r from-green-50 to-emerald-50 p-6 rounded-xl shadow-lg mb-6 border border-green-200">
+                        <div class="flex items-center mb-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-green-600 mr-3"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                            <h4 class="text-xl font-bold text-green-800">📧 Email Thân Mật (Cho Bạn Bè)</h4>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg border border-green-200 mb-4">
+                            <p class="text-slate-700 mb-2"><strong>Yêu cầu:</strong> ${part4Data.friend_email.prompt}</p>
+                            <p class="text-slate-600 text-sm italic">📝 Viết khoảng 50 từ, phong cách thân mật, tự nhiên</p>
+                        </div>
+                        <button class="toggle-suggestion-btn bg-green-600 hover:bg-green-700 text-white py-3 px-6 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg flex items-center space-x-2 w-full justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11H1v6h8l5 4V7l-5 4z"></path></svg>
+                            <span>Ẩn Gợi Ý & Bài Mẫu</span>
+                        </button>
+                        <div class="suggestion mt-4 animate-fadeIn">
+                            <div class="bg-gradient-to-r from-green-100 to-emerald-100 p-4 rounded-lg border border-green-300 mb-4">
+                                <h5 class="font-bold text-green-800 mb-2 flex items-center">
+                                    💡 Gợi Ý Dàn Bài:
+                                </h5>
+                                <div class="text-slate-700 leading-relaxed">${part4Data.friend_email.suggestion || 'Đang cập nhật...'}</div>
+                            </div>
+                            <div class="bg-white p-4 rounded-lg border border-green-200">
+                                <h5 class="font-bold text-green-800 mb-3 flex items-center">
+                                    ⭐ Bài Viết Mẫu:
+                                </h5>
+                                <div class="sample-email bg-green-50 border border-green-200">${part4Data.friend_email.sample || 'Đang cập nhật...'}</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Email to Manager -->
+                    <div class="bg-gradient-to-r from-purple-50 to-indigo-50 p-6 rounded-xl shadow-lg border border-purple-200">
+                        <div class="flex items-center mb-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-purple-600 mr-3"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><polyline points="17,11 19,13 23,9"></polyline></svg>
+                            <h4 class="text-xl font-bold text-purple-800">🏢 Email Trang Trọng (Cho Quản Lý)</h4>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg border border-purple-200 mb-4">
+                            <p class="text-slate-700 mb-2"><strong>Yêu cầu:</strong> ${part4Data.manager_email.prompt}</p>
+                            <p class="text-slate-600 text-sm italic">📝 Viết khoảng 120-150 từ, phong cách trang trọng, chuyên nghiệp</p>
+                        </div>
+                        <button class="toggle-suggestion-btn bg-purple-600 hover:bg-purple-700 text-white py-3 px-6 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg flex items-center space-x-2 w-full justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11H1v6h8l5 4V7l-5 4z"></path></svg>
+                            <span>Ẩn Gợi Ý & Bài Mẫu</span>
+                        </button>
+                        <div class="suggestion mt-4 animate-fadeIn">
+                            <div class="bg-gradient-to-r from-purple-100 to-indigo-100 p-4 rounded-lg border border-purple-300 mb-4">
+                                <h5 class="font-bold text-purple-800 mb-2 flex items-center">
+                                    💡 Gợi Ý Dàn Bài:
+                                </h5>
+                                <div class="text-slate-700 leading-relaxed">${part4Data.manager_email.suggestion || 'Đang cập nhật...'}</div>
+                            </div>
+                            <div class="bg-white p-4 rounded-lg border border-purple-200">
+                                <h5 class="font-bold text-purple-800 mb-3 flex items-center">
+                                    ⭐ Bài Viết Mẫu:
+                                </h5>
+                                <div class="sample-email bg-purple-50 border border-purple-200">${part4Data.manager_email.sample || 'Đang cập nhật...'}</div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                practiceArea.appendChild(part4Container);
+                
+                practiceArea.querySelectorAll('.toggle-suggestion-btn').forEach(button => {
+                    button.onclick = () => {
+                        const suggestionDiv = button.nextElementSibling;
+                        const buttonText = button.querySelector('span');
+                        if (suggestionDiv.classList.contains('hidden')) {
+                            suggestionDiv.classList.remove('hidden');
+                            suggestionDiv.classList.add('animate-fadeIn');
+                            buttonText.textContent = 'Ẩn Gợi Ý & Bài Mẫu';
+                        } else {
+                            suggestionDiv.classList.add('hidden');
+                            suggestionDiv.classList.remove('animate-fadeIn');
+                            buttonText.textContent = 'Xem Gợi Ý & Bài Mẫu';
+                        }
+                    };
+                });
+
+            } else {
+                practiceArea.innerHTML = `<div class="bg-white p-8 rounded-xl shadow-md text-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="mx-auto text-slate-400 mb-4"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
+                    <h3 class="text-xl font-semibold text-slate-700 mb-2">Nội dung đang được cập nhật</h3>
+                    <p class="text-slate-500">Nội dung Part 4 cho chủ đề '${topicName}' sẽ sớm được bổ sung.</p>
+                </div>`;
+            }
+        }
+        
+        function createQuestionCard(q) {
+            const questionCard = document.createElement('div');
+            questionCard.className = 'bg-gradient-to-r from-white to-blue-50 p-4 sm:p-6 rounded-xl shadow-lg mb-4 sm:mb-6 border border-blue-100 transition-all duration-300 hover:shadow-xl hover:scale-105 question-card-mobile';
+            let questionText = q.question.startsWith('<b>') ? q.question : `${q.question}`;
+
+            questionCard.innerHTML = `
+                <div class="flex flex-col space-y-3 sm:space-y-4">
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center space-y-2 sm:space-y-0">
+                        <span class="text-xs sm:text-sm font-bold text-white bg-gradient-to-r from-indigo-600 to-blue-600 py-2 px-3 sm:px-4 rounded-full shadow-md">${q.part || 'Question'}</span>
+                        <button class="toggle-suggestion-btn bg-green-500 hover:bg-green-600 text-white px-3 sm:px-4 py-2 rounded-lg transition-all duration-200 shadow-md hover:shadow-lg flex items-center space-x-1 sm:space-x-2 w-full sm:w-auto justify-center button-mobile" title="Ẩn/Hiện Gợi ý">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="sm:w-4 sm:h-4"><path d="M9 11H1v6h8l5 4V7l-5 4z"></path><path d="M22 9l-6 6"></path><path d="M16 15l6-6"></path></svg>
+                            <span class="text-xs sm:text-sm font-medium">Ẩn Gợi Ý</span>
+                        </button>
+                    </div>
+                    
+                    <div class="bg-white p-3 sm:p-4 rounded-lg border-l-4 border-blue-500 shadow-sm">
+                        <h4 class="font-bold text-gray-800 mb-2 flex flex-col sm:flex-row items-start sm:items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-blue-600 mr-0 sm:mr-2 mb-1 sm:mb-0 sm:w-5 sm:h-5"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><path d="M12 17h.01"></path></svg>
+                            <span class="text-sm sm:text-base">Câu Hỏi:</span>
+                        </h4>
+                        <p class="text-base sm:text-lg text-slate-800 leading-relaxed">${questionText}</p>
+                    </div>
+                    
+                    <div class="suggestion bg-gradient-to-r from-green-50 to-emerald-50 p-4 sm:p-5 border border-green-200 rounded-lg shadow-inner animate-fadeIn">
+                        <div class="flex flex-col sm:flex-row items-start sm:items-center mb-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-green-600 mr-0 sm:mr-2 mb-1 sm:mb-0 sm:w-6 sm:h-6"><path d="M9 12l2 2 4-4"></path><circle cx="12" cy="12" r="10"></circle></svg>
+                            <h5 class="text-base sm:text-lg font-bold text-green-800">Gợi Ý & Cách Trả Lời</h5>
+                        </div>
+                        <div class="prose prose-sm max-w-none text-slate-700 leading-relaxed text-sm sm:text-base">
+                            ${q.suggestion}
+                        </div>
+                    </div>
+                </div>
+            `;
+            questionCard.querySelector('.toggle-suggestion-btn').onclick = () => {
+                const suggestionDiv = questionCard.querySelector('.suggestion');
+                const button = questionCard.querySelector('.toggle-suggestion-btn span');
+                if (suggestionDiv.classList.contains('hidden')) {
+                    suggestionDiv.classList.remove('hidden');
+                    suggestionDiv.classList.add('animate-fadeIn');
+                    button.textContent = 'Ẩn Gợi Ý';
+                } else {
+                    suggestionDiv.classList.add('hidden');
+                    suggestionDiv.classList.remove('animate-fadeIn');
+                    button.textContent = 'Xem Gợi Ý';
+                }
+            };
+            return questionCard;
+        }
+
+        // Combined practice logic
+        combinedPracticeBtn.onclick = () => {
+            practiceContainer.style.display = 'block';
+            welcomeMessage.style.display = 'none';
+            topicSelect.value = ''; // Deselect topic
+            currentTab = 'part123';
+            setActiveTab(currentTab);
+
+            practiceArea.innerHTML = `<div class="loader"></div>`;
+            setTimeout(() => {
+                let allQuestions = [];
+                Object.keys(practiceData).forEach(topic => {
+                    ['Part 1', 'Part 2', 'Part 3'].forEach(part => {
+                        if(practiceData[topic][part]) {
+                            practiceData[topic][part].forEach(q => {
+                                allQuestions.push({ ...q, topic, part });
+                            });
+                        }
+                    });
+                });
+
+                for (let i = allQuestions.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [allQuestions[i], allQuestions[j]] = [allQuestions[j], allQuestions[i]];
+                }
+                
+                const randomQuestions = allQuestions.slice(0, 5).map(q => ({
+                    ...q,
+                    question: `<b>[${q.topic}]</b> ${q.question}`
+                }));
+
+                displayParts123("Luyện Tập Tổng Hợp", randomQuestions);
+            }, 300);
+        };
+
+        // Initial setup
+        createTopicOptions();
+
+    </script>
+</body>
+</html>
